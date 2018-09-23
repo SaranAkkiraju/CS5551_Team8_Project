@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="css/templatemo-style.css">	
+	<link rel="stylesheet" href="css/tst.css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+    <!--<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>-->
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
+	
+	<script src="js/FacebookLogout.js"></script>
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+	<meta name="google-signin-client_id" content="319573095737-2c98cnr7fhjnurbi5es3h907klpd0hpb.apps.googleusercontent.com">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+</head>
+<body ng-app="app">
+<!-- TOP HEADER -->
+<div class="top-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <!--<p class="phone-info">Please select one of service </p>-->
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="social-icons">
+                    <ul>
+                        <li><a href="#"  class="fa fa-sign-out"></a></li>
+                    </ul>
+                </div>
+            </div>
+
+			<a href="#" onclick="signOut();">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Sign out &emsp;</a>
+			<a href="#" onclick="facebookLogout();">&emsp; Sign out of FB &emsp;</a>
+			<a href="#" onclick="">&emsp; About &emsp;</a>
+			<a href="#" onclick="">&emsp; Contact Us &emsp;</a>
+        </div>
+    </div>
+</div> <!-- .top-header -->
+<div class="container" id="page-content">
+    <div class="row">
+        <div class="col-md-9 col-sm-12 content-holder">
+            <!-- CONTENT -->
+            <div id="menu-container">
+
+
+                <div id="menu-3" class="content pro-section"  ng-controller="currencyCtrl">
+                    <div class="col-md-12 col-sm-12" >
+                        <div class="box-content profile">
+                            <h3 class="widget-title">Currency Conversion</h3>
+                            <form class="contact-form simple-form-input">
+                                <fieldset>
+                                    <b><input id="from" type="text" style="width: 30%;" class="name"  ng-model="from"
+                                              placeholder="From Country" required></b>
+                                    <b><input id="to" type="text" style="width: 30%;" class="name"  ng-model="to"
+                                              placeholder="To Country" required></b>
+                                    <b><input id="amount" type="text" style="width: 30%;" class="name"  ng-model="amount"
+                                              placeholder="Amount" required></b>
+                                    <br>
+                                    <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;
+                                    <input type="button" class="button"
+                                           value="convert" ng-click="getCurrency()"><br>
+                                    <br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;
+                                    <b><input id="cAmount" ng-model="convertAmount" type="text" style="width: 30%;" class="name"
+                                              placeholder="Click on convert" ></b>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="menu-4" class="content contact-section" style="display:none">
+                    <div class="box-content-map" >
+                            <div id="map" style="position:absolute; width:70%; height:85%" ></div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <b class="widget-title">City:</b>
+                        <span id="city"  type="text" class="name" ></span>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <b class="widget-title">Country Code:</b>
+                        <span id="country"type="text" class="name" ></span>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <b class="widget-title">Latitude: </b>
+                        <span id="latitude"type="text" class="name" ></span>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <b class="widget-title">Longitude: </b>
+                        <span id="longitude"type="text" class="name" ></span>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <b class="widget-title">Population: </b>
+                        <span id="population"type="text" class="name" ></span>
+                    </div>
+                </div>
+                <div id="menu-2" class="content about-section" style="display:none" ng-controller="nutrotionctrl" >
+                    <div class="col-md-12 col-sm-12" >
+                        <div class="box-content profile">
+                            <h3 class="widget-title">Search Ingredients</h3>
+                            <form class="contact-form simple-form-input">
+                                <fieldset>
+                                    <b><input type="text"  class="name" id="food"
+                                              placeholder="Ingredient Name" ng-model="food" required></b>
+
+                                    <input type="button" class="button" style="padding:9px 18px;"
+                                           value="Find" onclick="hideFunction()"  ng-click="getNutrition()" >
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="resDIV"  style="display:none">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="box-content " >
+                                <h3 class="widget-title" >Top Recipes</h3>
+                                <table id="weather" class="tftable" border="0">
+                                    <tr ng-repeat="x in foodDishes">
+                                        <td>{{x}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="box-content">
+                                <h3 class="widget-title" >Pronunciation</h3>
+                                <div style="margin-bottom: 15px;">
+                                    <audio controls ng-src="{{audioUrl}}">
+                                    </audio>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				
+				<div id="menu-1" class="content homepage home-section text-center">
+				<div class="row">
+                <div class="col-md-8 col-sm-8" style="width: 100%;">
+                <div class="box-content profile">
+				<div id="result" style=" font-size: 30px"></div>
+				<div class="app">
+				<h1 class="widget-title">Speech To Text Converstion</h1>
+				<div class="input-single contact-form simple-form-input">
+				<textarea id="note-textarea" placeholder="Press Start Listening button and Start speaking to get text here." rows="3"></textarea>
+				</div>
+				<br>
+				<form class="contact-form">
+                <fieldset>
+				<input type="button" class="button" style="padding:9px 18px;" id="start-record-btn" title="Start Recording"  value="Start Listening">
+				<input type="button" class="button" style="padding:9px 18px;" id="pause-record-btn" title="Pause Recording"  value="Pause ">
+				</fieldset>
+                </form>
+				<br>
+				<p id="recording-instructions">Please Allow to use<strong>Microphone.</strong></p>			
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>
+				
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+				<script src="js/VoiceRecognisation.js"></script>
+				
+				<div id="menu-0" class="homepage home-section text-center">
+				<div class="box-content-map" >
+                  
+				    <div class="jumbotron">
+					<h1>About Mashup Website</h1>      
+					<p>This is developed using HTML5,Css3,Jquery,Angular JS,Node server,Bootstrap,Local Storage and OAuth 2.0.Features of website are liste</p>
+					</div>
+					<dt>Google Map</dt>
+					<p>This website gives you all details like city name, country ,lattitude, longitude and its population of places by placing cursor or touch.</p>  <br> 
+					<dt>Currency Converter</dt>					
+					<p>It comprise of module that coverts currency. Please enter from and to country and press convert button.</p> 
+					<br><dt>Voice Recognisation</dt>
+					<p>Contains module which will write down whatever you say.All you have to do is to press button and start talking.</p> 
+					<br><dt>Recepie finder</dt>
+					<p>It includes finding receipe module. Given Ingredient name it will show all top receipes and spell it for you.</p> 
+					<div class="container">
+					</div>
+				</div>
+				</div>
+				
+				
+            </div>
+        </div>
+        <div class="col-md-3 hidden-sm">
+            <nav id="nav" class="main-navigation hidden-xs hidden-sm">
+                <ul class="main-menu">
+                    <li>
+                        <a class="show-5 contactbutton" ><i class="fa fa-envelope" ></i><div onclick="showFunction();loadMap()">Google Maps</div></a>
+                    </li>
+                    <li>
+                        <a class="show-5 projectbutton" href="#"><i class="fa fa-envelope"></i>Currency Conversion</a>
+                    </li>
+                    <li>
+                        <a class="show-1 active homebutton" href="#"><i class="fa fa-home"></i>Speech To Text</a>
+                    </li>
+                    <li>
+                        <a class="show-2 aboutbutton" href="#"><i class="fa fa-search"></i><div onclick="showFunction1();">Finding Recipes</div></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<!-- SITE-FOOTER -->
+<div class="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+            </div>
+        </div>
+    </div>
+</div> <!-- .site-footer -->
+<script>
+
+</script>
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+<script>
+    var app = angular.module('app',[]);
+        app.controller('nutrotionctrl', function ($scope, $http, $sce) {
+            payloadNutrition = {
+                'appId': '64389deb',
+                'appKey': '19c54f88a1779efaf243f687acc49844'
+            };
+            payloadPron = {
+                'username': '167ae0e0-2a2a-4450-bbf5-51664f851ce0',
+                'password': 'oauBhbrEuZ8j',
+                'text': 'Pneumonoultramicroscopicsilicovolcanoconiosis'
+            };
+            $scope.getNutrition = function () {
+                if ($scope.food) {
+                    var readVal="";
+                    $http.get('https://www.food2fork.com/api/search?key=7881b1b04971e10d08f6ceb13aba53e3&q='+$scope.food+'&sort=r').success(function (data) {
+                            var dishes=[];
+
+                            for(var i=0;i<7;i++) {
+                                dishes.push(new Array(data.recipes[i].title));
+                            }
+                            console.log(dishes.length);
+
+                            $scope.foodDishes =[];
+                            for(var x=0;x<dishes.length;x++) {
+                                var val= dishes[x];
+                                readVal=readVal+" "+dishes[x];
+                                $scope.foodDishes.push(val.toString());
+                            }
+                        console.log("Inside "+readVal);
+                        $scope.audioUrl = $sce.trustAsResourceUrl('https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?username=' + payloadPron.username + '&password=' + payloadPron.password + '&text= Searched Word is ' + $scope.food+' and the top 7 recipes as per social rankings are '+readVal);
+                        }
+                    )
+                }
+            }
+        });
+    app.controller('currencyCtrl', function($scope, $http) {
+        console.log("Fo ")
+        payloadcurrency = {
+            'access_key':'8fcacfedac5df3d6656349d7645971b9'
+        };
+        $scope.getCurrency = function() {
+            if($scope.from && $scope.to && $scope.to) {
+                console.log("Fo inside" + $scope.from);
+                $http.get('http://data.fixer.io/api/convert?access_key=' + payloadcurrency.access_key + '&from=' + $scope.from + '&to=' + $scope.to + '&amount=' + $scope.amount).success(function (data) {
+                        currency = data.result;
+                        console.log(currency);
+                        $scope.convertAmount = data.result;
+                        console.log("ok")
+                    }
+                )
+            }
+        }
+    });
+    function hideFunction() {
+        var x = document.getElementById("resDIV");
+        var y = document.getElementById("food");
+        if (x.style.display === "none"  && y.value!="") {
+            x.style.display = "block";
+        }
+    }
+    </script>
+<script src="js/vendor/jquery-1.10.2.min.js"></script>
+<script src="js/main.js"></script>
+<!--<script src="js/currency.js"></script>-->
+<script src="js/nutrition.js"></script>
+</body>
+</html>
