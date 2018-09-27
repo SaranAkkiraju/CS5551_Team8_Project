@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Destino project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="google-signin-client_id" content="980135476714-ibh5p28a48dv40h32eadbeagnfn5qq3m.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" type="application/javascript"></script>
+<script src="js/FacebookScript.js"></script>
+<script src="js/FaceBookLogout.js"></script>
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
 <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
@@ -42,10 +48,10 @@
 								<li class="main_nav_item active"><a href="#">Home</a></li>
 								<li class="main_nav_item"><a href="about.html">About us</a></li>
 								<li class="main_nav_item"><a href="contact.html">Contact</a></li>
-								<li class="main_nav_item"><a href="LoginPage.html">Sign Out</a></li>
+								<li class="main_nav_item" onclick="signOut();"><a href="#" >Sign Out</a></li>
 							</ul>
 						</nav>
-
+						<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 						<!-- Search -->
 
 
@@ -157,5 +163,7 @@
 <script src="plugins/parallax-js-master/parallax.min.js"></script>
 <script src="plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 <script src="js/custom.js"></script>
+
+
 </body>
 </html>

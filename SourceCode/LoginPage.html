@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
@@ -12,9 +12,8 @@
     <link href="css/docs.css" rel="stylesheet" >
     <link href="css/bootstrap-social.css" rel="stylesheet" >
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
-	<meta name="google-signin-client_id" content="319573095737-2c98cnr7fhjnurbi5es3h907klpd0hpb.apps.googleusercontent.com">
+	<meta name="google-signin-client_id" content="980135476714-ibh5p28a48dv40h32eadbeagnfn5qq3m.apps.googleusercontent.com">
 	<script>
-        userName
 	function myFunction() {
             var username = document.getElementById("myusername");
             var password = document.getElementById("mypassword");
@@ -24,32 +23,39 @@
             }
 			else
 			{
-				var Local_UserName = localStorage.getItem('userName');
-				var Local_Password = localStorage.getItem('password');
-				if(Local_UserName === username.value && Local_Password === password.value)
+				//var Local_UserName = localStorage.getItem('userName');
+				var Local_Password = localStorage.getItem(username.value);
+				if(Local_Password!=null) {
+                    if (Local_Password === password.value) {
+                        localStorage.setItem("oauth","normalLogin");
+                        window.location.href = 'index.html';
+                    }
+                    else {
+                        finalError.innerHTML = 'Please enter valid user name and password';
+                    }
+                }
+                else
 				{
-					window.location.href = 'homePage.html';
-				}
-				else
-				{
-					finalError.innerHTML = 'Please enter valid user name and password';	
+                    finalError.innerHTML ="Username is not available";
 				}
 			}
 			}
     function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
         if (profile != null || profile != undefined || profile != '') {
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Username: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-            window.location.href = 'HomePage.html';
+            localStorage.setItem("oauth","google");
+            // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            // console.log('Username: ' + profile.getName());
+            // console.log('Image URL: ' + profile.getImageUrl());
+            // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+            window.location.href = 'index.html';
         }
         else {
             alert('Google Sign In Failed!');
         }
     }
 	</script>
+	<script src="../../CS5551_TEAM8_LABASSIGN50/Lab1/SourceCode/OauthScript.js"></script>
 </head>
 <body>
 <div class="bg-class">
@@ -60,11 +66,12 @@
         <h3 class="widget-title">Login Page</h3>
         <form class="contact-form simple-form">
             <fieldset>
-                <input type="text" style="width: 70%;" id="myusername" placeholder="UserName" required >
-                <input type="password" style="width: 70%;" id="mypassword" placeholder="password" required>
+                <p><input type="text" style="width: 100%; left:35%; position: relative" id="myusername" placeholder="User Name" required ></p>
+				<br>
+                <input type="password" style="width: 100%; left:35%; position: relative" id="mypassword" placeholder="Password" required>
                 <br>
 				<br>
-                <input type="button" class="button" style="padding:9px 18px;"
+                <input type="button" class="button" style="padding:9px 18px; left: 37%;position: relative"
                        value="Login" onclick="myFunction()">
             </fieldset>
         </form>
@@ -81,17 +88,17 @@
 		<br>
 		<div class="form-group"> 
 			<div class="col-sm-12 controls">
-				<div class="g-signin2" data-onsuccess="onSignIn"></div>
-				<br> 				
+				<div class="g-signin2" data-cookiepolicy='single_host_origin' data-onsuccess="onSignIn"></div>
+				<br>
 				<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 				</fb:login-button>
-<div id="status">
-</div>
+				<div id="status">
+				</div>
 			</div> 
 		</div>
 		<br>			
     </div>						
 </div>
-</div>
+</center></div>
 </body>
 </html>
