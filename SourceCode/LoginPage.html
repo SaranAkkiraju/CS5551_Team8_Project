@@ -19,12 +19,16 @@
             var password = document.getElementById("mypassword");
 			if (username.value=="" || password.value=="")
             {
-				finalError.innerHTML = 'Mandtory columns should be entered';
+				finalError.innerHTML = 'Mandatory columns should be entered';
             }
 			else
 			{
+			    console.log("in else boss");
 				//var Local_UserName = localStorage.getItem('userName');
 				var Local_Password = localStorage.getItem(username.value);
+				alert(username.value);
+                console.log(password.value);
+				// alert(password.value);
 				if(Local_Password!=null) {
                     if (Local_Password === password.value) {
                         localStorage.setItem("oauth","normalLogin");

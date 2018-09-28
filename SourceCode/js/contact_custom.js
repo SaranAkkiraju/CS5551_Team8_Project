@@ -177,11 +177,11 @@ $(document).ready(function()
 
 	function initGoogleMap()
 	{
-		var myLatlng = new google.maps.LatLng(34.043238,-118.258338);
+		var myLatlng = new google.maps.LatLng(37.043238,-91.258338);
     	var mapOptions = 
     	{
     		center: myLatlng,
-	       	zoom: 13,
+	       	zoom: 7,
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			draggable: true,
 			scrollwheel: false,
@@ -204,12 +204,13 @@ $(document).ready(function()
 
     	// Use an image for a marker
 		// var image = 'images/map_marker.png';
-		var image = 
+		/*var image = 
 		{
 			url:'images/marker.png',
 			size: new google.maps.Size(230, 150),
 			anchor: new google.maps.Point(206, 125) //setting the anchor for larger icons
 		};
+		*/
 
 		var imageSmall =
 		{

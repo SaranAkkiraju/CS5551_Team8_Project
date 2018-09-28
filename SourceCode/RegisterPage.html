@@ -20,7 +20,7 @@
                 <div id="error1" class="error-fields"></div></br>
                 <input type="password" style="width: 70%;" id="pass" placeholder="Password" required>
                 <div id="errorPass" class="check-fields"></div></br>
-                <input type="password" style="width: 70%;" id="confirmPass" placeholder="Confirm password" required >
+                <input type="password" style="width: 70%;" id="confirmPass" placeholder="Confirm Password" required >
                 <div id="error2" class="error-fields"></div></br>
                 <div id="errorConfirmPass" class="check-fields"></div>
                 <!--<input type="text" style="width: 70%;" id="mobilePhone" placeholder="Mobile phone" optional><br>-->
@@ -28,7 +28,7 @@
                 <!--&nbsp;DOB:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" style="width: 54%" id="dob" ><br>-->
                 <div>
                 <select id="security" name="question" style="width:70%;border: 1px solid #eee;
-    border-left: 3px solid salmon;
+    border-left: 3px solid palegreen;
     border-radius: 5px;
     height: 32px;" >
                     <option selected disabled >&nbsp;&nbsp;Select Question</option>
@@ -141,7 +141,7 @@
 
             if (firstName.value=="" || eamilId.value=="" || password.value=="" || confirmPassword.value=="" || answer.value=="")
             {
-                finalErrorDiv.innerHTML = 'Mandtory columns should be entered';
+                finalErrorDiv.innerHTML = 'Mandatory columns should be entered';
                 x=false;
             }
             var alpha= new RegExp('.*\\d.*');
