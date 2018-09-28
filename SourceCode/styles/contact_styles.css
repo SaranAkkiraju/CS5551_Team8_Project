@@ -289,7 +289,7 @@ section
 .home_content
 {
 	width: 100%;
-	height: 601px;
+	height: 651px;
 }
 .home_content_inner
 {
@@ -365,9 +365,8 @@ section
 .header_container
 {
 	width: 100%;
-	height: 121px;
-	/*background: #131a2f;*/
-	background: lightsteelblue;
+	height: 75px;
+	background: #994d00;
 	-webkit-transition: all 400ms ease;
 	-moz-transition: all 400ms ease;
 	-ms-transition: all 400ms ease;
@@ -419,7 +418,7 @@ section
 .logo_image
 {
 	position: absolute;
-	top: -34px;
+	top: -20px;
 	left: 71px;
 	width: 90px;
 	height: 91px;
@@ -479,7 +478,7 @@ section
 	font-size: 15px;
 	font-weight: 400;
 	color: #FFFFFF;
-	line-height: 121px;
+	line-height: 75px;
 	padding-left: 22px;
 	padding-right: 22px;
 	-webkit-transition: all 200ms ease;
@@ -625,13 +624,7 @@ section
 	font-style: italic;
 	color: rgba(255, 255, 255, 0.5) !important;
 }
-.search_input::input-placeholder
-{
-	font-size: 12px !important;
-	font-weight: 400 !important;
-	font-style: italic;
-	color: rgba(255, 255, 255, 0.5) !important;
-}
+
 
 /*********************************
 4.4 Hamburger
@@ -1067,13 +1060,6 @@ section
 	font-style: italic;
 	color: #939393 !important;
 }
-.find_input::input-placeholder
-{
-	font-size: 14px !important;
-	font-weight: 400 !important;
-	font-style: italic;
-	color: #939393 !important;
-}
 
 /*********************************
 7. Contact
@@ -1130,37 +1116,13 @@ section
 	padding-left: 23px;
 	max-width: 310px;
 }
+
 .contact_info_content ul li
 {
 	font-size: 14px;
 	color: #131a2f;
 	font-weight: 500;
 	margin-bottom: 18px;
-}
-.contact_info_social
-{
-	margin-top: 46px;
-	margin-left: -10px;
-}
-.contact_info_social ul li
-{
-	display: inline-block;
-	margin-right: 3px;
-}
-.contact_info_social ul li a i
-{
-	color: #7d8293;
-	padding: 10px;
-	font-size: 17px;
-	-webkit-transition: all 200ms ease;
-	-moz-transition: all 200ms ease;
-	-ms-transition: all 200ms ease;
-	-o-transition: all 200ms ease;
-	transition: all 200ms ease;
-}
-.contact_info_social ul li a i:hover
-{
-	color: #fe3c52;
 }
 
 /*********************************
@@ -1213,14 +1175,7 @@ section
 	font-style: italic;
 	color: #7d8293 !important;
 }
-.contact_input::input-placeholder,
-.contact_input_message::input-placeholder
-{
-	font-size: 12px !important;
-	font-weight: 400 !important;
-	font-style: italic;
-	color: #7d8293 !important;
-}
+
 .contact_input_message
 {
 	width: 100%;
@@ -1365,13 +1320,7 @@ section
 	font-style: italic;
 	color: #FFFFFF !important;
 }
-.newsletter_input::input-placeholder
-{
-	font-size: 14px !important;
-	font-weight: 400 !important;
-	font-style: italic;
-	color: #FFFFFF !important;
-}
+
 
 /*********************************
 9. Footer
