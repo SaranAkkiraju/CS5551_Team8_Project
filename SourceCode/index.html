@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Destino</title>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Destino project">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Travel Explorar</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Destino project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="google-signin-client_id" content="980135476714-ibh5p28a48dv40h32eadbeagnfn5qq3m.apps.googleusercontent.com">
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" type="application/javascript"></script>
-<script src="js/FacebookScript.js"></script>
-<script src="js/FaceBookLogout.js"></script>
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
-<link href="plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
-<link rel="stylesheet" type="text/css" href="styles/responsive.css">
+	<meta name="google-signin-client_id" content="980135476714-ibh5p28a48dv40h32eadbeagnfn5qq3m.apps.googleusercontent.com">
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" type="application/javascript"></script>
+	<script src="js/FacebookScript.js"></script>
+	<script src="js/FaceBookLogout.js"></script>
+	<script src="js/KnowledgeGraphAPI.js"></script>
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+	<link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+	<link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+	<link href="plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+	<link rel="stylesheet" type="text/css" href="styles/responsive.css">
 </head>
 <body>
 
-<div class="super_container">
+<div class="super_container" ng-app="indexpage" ng-controller="indexctrl">
 	
 	<!-- Header -->
 
@@ -97,7 +98,7 @@
 						<form action="#" id="find_form" class="find_form d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-between justify-content-start flex-wrap">
 							<div class="find_item">
 								<div>Destination:</div>
-								<input type="text" class="destination find_input" required="required" placeholder="">
+								<input type="text"  class="destination find_input" required="required" ng-model="searchDestination" placeholder="Enter your Destination">
 							</div>
 							<div class="find_item">
 								<div>From</div>
@@ -121,7 +122,21 @@
 									<option>Party</option>
 								</select>
 							</div>
-							<button class="button find_button">Find</button>
+							<!--<button class="button find_button">Find</button>-->
+
+							<input type="button" class="button find_button" ng-click="getSearchResult()" value="Find"/>
+							</br>
+							<div class="descriptionBody">
+
+								<!--<p id="errormsg"></p>-->
+								<p style="color: #FFFFFF"><b>{{description}}</b></p>
+								<p style="color: #FFFFFF">{{searchDescription}}</p>
+								<!--<p><b>{{wikiheading}}</b></p>-->
+								<!--<p><a href="{{wiki}}"> {{wiki}}</a> </p>-->
+								<!--<p><img  ng-src="{{searchimage}} "></p>-->
+
+
+							</div>
 						</form>
 					</div>
 				</div>
