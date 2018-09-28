@@ -223,7 +223,7 @@ section
 }
 .parallax-window
 {
-    min-height: 400px;
+    min-height: 600px;
     background: transparent;
 }
 
@@ -838,6 +838,7 @@ section
 .find
 {
 	width: 100%;
+	height: 600px;
 	padding-top: 63px;
 	padding-bottom: 70px;
 	z-index: 0;
@@ -1607,4 +1608,9 @@ section
 .tag:hover
 {
 	background: rgba(254,60,82,0.8);
+}
+
+.descriptionBody
+{
+	margin-top: 20px;
 }
