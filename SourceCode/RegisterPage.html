@@ -8,24 +8,21 @@
 </head>
 <body>
 <center>
-<div class="col-md-4 col-md-offset-4">
+<div class="col-md-4 col-md-offset-4" ng-app="demoMongo" ng-controller="MongoRestController">
     <div class="box-content profile">
         <h3 class="widget-title">Register Here</h3>
         <form class="contact-form simple-form">
             <fieldset>
-                <input type="text" style="width: 33%;" id="fName" placeholder="First name" required>
-                <input type="text" style="width: 34%;" id="lName" placeholder="Last name">
+                <input type="text" style="width: 33%;" ng-model="fname" id="fName" placeholder="First name" required>
+                <input type="text" style="width: 34%;" ng-model="lname" id="lName" placeholder="Last name">
                 <div id="error" class="error-fields"></div></br>
-                <input type="text" style="width: 70%;" id="uName" placeholder="Email ID" required>
+                <input type="text" style="width: 70%;" ng-model="uname" id="uName" placeholder="Email ID" required>
                 <div id="error1" class="error-fields"></div></br>
-                <input type="password" style="width: 70%;" id="pass" placeholder="Password" required>
+                <input type="password" style="width: 70%;" ng-model="password" id="pass" placeholder="Password" required>
                 <div id="errorPass" class="check-fields"></div></br>
-                <input type="password" style="width: 70%;" id="confirmPass" placeholder="Confirm Password" required >
+                <input type="password" style="width: 70%;" ng-model="confirmpassword" id="confirmPass" placeholder="Confirm Password" required >
                 <div id="error2" class="error-fields"></div></br>
                 <div id="errorConfirmPass" class="check-fields"></div>
-                <!--<input type="text" style="width: 70%;" id="mobilePhone" placeholder="Mobile phone" optional><br>-->
-                <!--<div id="error3" class="error-fields"></div>-->
-                <!--&nbsp;DOB:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" style="width: 54%" id="dob" ><br>-->
                 <div>
                 <select id="security" name="question" style="width:70%;border: 1px solid #eee;
     border-left: 3px solid palegreen;
@@ -41,12 +38,15 @@
                 <br><br>
 
                  By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a></br>
-                <input type="button" class="button" style="padding:9px 18px;"
-                       value="Sign UP" onclick="myFunction()">
+                <input type="submit" class="button" style="padding:9px 18px;"
+                       value="Sign UP"
+
+                       ng-click="insertData()">
                 <br>
-                <div id="finalError" class="error-fields"></div>
+                <span id="finalError" class="error-fields"></span>
             </fieldset>
         </form>
+        <input type="text"  style="width: 100% ;border: 0px; background-color: #F5F5F5; color: red" ng-model="finalErr">
     </div>
 </div>
     <script>
@@ -92,6 +92,11 @@
             }
         }
 
+        security.onkeyup = function()
+        {
+            errorConfirmPass.innerHTML="";
+        }
+
         confirmPass.onkeyup= function()
 
         {
@@ -106,9 +111,6 @@
             }
         }
         confirmPass.onblur = function() {
-
-
-
             if (!(confirmPass.value.toString()).match(pass.value.toString())) {
                 confirmPass.classList.add('invalid');
                 error2.innerHTML = 'Passwords should be same'
@@ -122,6 +124,7 @@
             }
         };
 
+
         function myFunction() {
             var firstName = document.getElementById("fName");
             var eamilId = document.getElementById("uName");
@@ -131,6 +134,7 @@
 
             var errorDiv=document.getElementById("error");
             var errorDiv1=document.getElementById("error1");
+            var errorDiv2=document.getElementById("error2");
 
             var finalErrorDiv=document.getElementById("finalError");
             errorDiv.innerHTML="";
@@ -139,25 +143,25 @@
             finalErrorDiv.innerHTML="";
             var x= true;
 
-            if (firstName.value=="" || eamilId.value=="" || password.value=="" || confirmPassword.value=="" || answer.value=="")
-            {
-                finalErrorDiv.innerHTML = 'Mandatory columns should be entered';
-                x=false;
-            }
-            var alpha= new RegExp('.*\\d.*');
-            if ((alpha.test(firstName.value))) { // not email
-                errorDiv.innerHTML = 'Numbers are not allowed in First Name';
-                x=false;
-            }
-            var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-            if (!(re.test(eamilId.value)) && eamilId.value!="") {
-                errorDiv1.innerHTML = 'Please enter correct Email Address';
-                x=false;
-            }
-            if (!(confirmPassword.value.toString()).match(password.value.toString()) || !(password.value.toString()).match(confirmPassword.value.toString()) ) {
-                errorDiv2.innerHTML = 'Passwords should be same';
-                x=false;
-            }
+            // if (firstName.value=="" || eamilId.value=="" || password.value=="" || confirmPassword.value=="" || answer.value=="")
+            // {
+            //     finalErrorDiv.innerHTML = 'Mandatory columns should be entered';
+            //     x=false;
+            // }
+            // var alpha= new RegExp('.*\\d.*');
+            // if ((alpha.test(firstName.value))) { // not email
+            //     errorDiv.innerHTML = 'Numbers are not allowed in First Name';
+            //     x=false;
+            // }
+            // var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+            // if (!(re.test(eamilId.value)) && eamilId.value!="") {
+            //     errorDiv1.innerHTML = 'Please enter correct Email Address';
+            //     x=false;
+            // }
+            // if (!(confirmPassword.value.toString()).match(password.value.toString()) || !(password.value.toString()).match(confirmPassword.value.toString()) ) {
+            //     errorDiv2.innerHTML = 'Passwords should be same';
+            //     x=false;
+            // }
             console.log("X "+x);
             if (x==true)
             {
@@ -165,10 +169,14 @@
                 var username=document.getElementById("uName").value;
                 var password=document.getElementById('pass').value;
                 localStorage.setItem(username,password);
-                finalErrorDiv.innerHTML = 'Registration Succesfull';
-				window.open("LoginPage.html", "_self");
+                // finalErrorDiv.innerHTML = 'Registration Succesfull';
+				// window.open("LoginPage.html", "_self");
             }
         }
     </script>
 </body>
+<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular.js"></script>
+<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular-resource.js"></script>
+<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular-sanitize.js"></script>
+<script src="js/app.js"></script>
 </html> 
