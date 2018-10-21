@@ -7,9 +7,37 @@ myapp.run(function ($http) {
     $http.defaults.headers.post['dataType'] = 'json'
 });
 myapp.controller('MongoRestController',function($scope,$http,$window){
+    $scope.focusfn = function () {
+        $scope.focus = true;
+        $scope.alreadyExists="";
+    };
+    $scope.blurfn = function () {
+        $scope.focus = false;
+
+        $http.get('http://127.0.0.1:8081/getData?keywords='+$scope.uname).then(function(d)
+            {
+                console.log("Len is already present"+d.data.length);
+                console.log("val already present"+JSON.stringify({d: d}));
+                if(d.data.length!=0) {
+                    console.log("it is already present" + d.data[0].username);
+                    $scope.alreadyExists="User Name Already Exists";
+                }
+                else
+                {
+                    $scope.alreadyExists="";
+                }
+            },function(err)
+            {
+                console.log(err);
+            }
+        )
+
+    };
     $scope.insertData = function(){
         // console.log($scope.formData.lname);
         console.log($scope.fname);
+
+
         // $scope.formData.confirmpassword= "tst";
         var dataParams = {
             'firstname' : $scope.fname,

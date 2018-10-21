@@ -5,6 +5,7 @@
     <title>Register Page</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/tst.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
 </head>
 <body>
 <center>
@@ -16,7 +17,9 @@
                 <input type="text" style="width: 33%;" ng-model="fname" id="fName" placeholder="First name" required>
                 <input type="text" style="width: 34%;" ng-model="lname" id="lName" placeholder="Last name">
                 <div id="error" class="error-fields"></div></br>
-                <input type="text" style="width: 70%;" ng-model="uname" id="uName" placeholder="Email ID" required>
+                <input type="text" style="width: 70%;" ng-model="uname" id="uName" placeholder="Email ID"
+                       ng-focus="focusfn()" ng-blur="blurfn()" required>
+                <h1 style="color: red">{{alreadyExists}}</h1>
                 <div id="error1" class="error-fields"></div></br>
                 <input type="password" style="width: 70%;" ng-model="password" id="pass" placeholder="Password" required>
                 <div id="errorPass" class="check-fields"></div></br>
@@ -25,10 +28,10 @@
                 <div id="errorConfirmPass" class="check-fields"></div>
                 <div>
                 <select id="security" name="question" style="width:70%;border: 1px solid #eee;
-    border-left: 3px solid palegreen;
+    border-left: 3px solid salmon;
     border-radius: 5px;
     height: 32px;" >
-                    <option selected disabled >&nbsp;&nbsp;Select Question</option>
+                    <option selected disabled >&nbsp;&nbsp;Where is your first job?</option>
                     <option>&nbsp;&nbsp;What is your first movie?</option>
                     <option>&nbsp;&nbsp;What is your favourite place?</option>
                     <option>&nbsp;&nbsp;What is your first school?</option>
@@ -46,7 +49,8 @@
                 <span id="finalError" class="error-fields"></span>
             </fieldset>
         </form>
-        <input type="text"  style="width: 100% ;border: 0px; background-color: #F5F5F5; color: red" ng-model="finalErr">
+        <!--<input type="text"  style="width: 100% ;border: 0px; background-color: #F5F5F5; color: red" ng-model="finalErr">-->
+        <h1 style="color: red">{{finalErr}}</h1>
     </div>
 </div>
     <script>
@@ -175,8 +179,8 @@
         }
     </script>
 </body>
-<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular.js"></script>
-<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular-resource.js"></script>
-<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular-sanitize.js"></script>
+<!--<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular.js"></script>-->
+<!--<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular-resource.js"></script>-->
+<!--<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular-sanitize.js"></script>-->
 <script src="js/app.js"></script>
 </html> 
