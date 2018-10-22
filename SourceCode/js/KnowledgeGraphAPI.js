@@ -6,6 +6,8 @@ angular.module('indexpage',[])
                 //alert("success triggered");
                 try {
                     console.log(data);
+                    console.log(data);
+                    console.log(data);
 
                     $scope.searchDescription = data.data.itemListElement[0].result.detailedDescription.articleBody;
                     $scope.description = "Description:";
