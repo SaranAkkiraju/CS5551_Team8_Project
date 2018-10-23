@@ -149,13 +149,48 @@
 											<td><b>{{ratingHeader}}</b></td>
 											<td>{{x.substring(x.indexOf("###")+3,x.length)}}</td>
 										</tr>
+										</br>
+
 										<tr>
 											<td><img ng-src="{{picsArray[$index]}}"/></td>
 										</tr>
+
+									</table>
+									<table>
 										<tr>
-											<td></td>
+											<td><b>{{reviewHeader}}</b></td>
+										</tr>
+										<tr style="color: black;" >
+											<td >{{reviews[$index]}}</td>
 										</tr>
 
+										<tr style="color: black;">
+											<td >{{reviews[$index +1]}}</td>
+										</tr>
+										<tr>
+											<td><b>{{weeklyhoursheader}}</b></td>
+										</tr>
+										<tr style="color: black;">
+											<td >{{weekdayHours[$index]}}</td>
+										</tr>
+										<tr style="color: black;">
+											<td >{{weekdayHours[$index +1]}}</td>
+										</tr>
+										<tr style="color: black;">
+											<td >{{weekdayHours[$index +2]}}</td>
+										</tr>
+										<tr style="color: black;">
+											<td >{{weekdayHours[$index + 3]}}</td>
+										</tr>
+										<tr style="color: black;">
+											<td >{{weekdayHours[$index + 4]}}</td>
+										</tr>
+										<tr style="color: black;">
+											<td >{{weekdayHours[$index + 5]}}</td>
+										</tr>
+										<tr style="color: black;">
+											<td >{{weekdayHours[$index + 6]}}</td>
+										</tr>
 									</table>
 								</div>
 								<!--<p id="errormsg"></p>-->
