@@ -30,13 +30,13 @@ function signOut() {
               window.location.href = 'LoginPage.html';
           });
       }
-      else if (oauth_value== "normalLogin")
+      else if (oauth_value== "fb")
       {
-          window.location.href = 'LoginPage.html';
+          facebookLogout();
       }
       else
       {
-          facebookLogout();
+          window.location.href = 'LoginPage.html';
       }
 
   } 

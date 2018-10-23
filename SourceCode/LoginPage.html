@@ -13,37 +13,7 @@
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name="google-signin-client_id" content="980135476714-ibh5p28a48dv40h32eadbeagnfn5qq3m.apps.googleusercontent.com">
 	<script>
-	function myFunction() {
-            var username = document.getElementById("myusername");
-            var password = document.getElementById("mypassword");
-			if (username.value=="" || password.value=="")
-            {
-				finalError.innerHTML = 'Mandatory columns should be entered';
-            }
-			else
-			{
-			    console.log("in else boss");
-				//var Local_UserName = localStorage.getItem('userName');
-				var Local_Password = localStorage.getItem(username.value);
-				alert(username.value);
-                console.log(password.value);
-				// alert(password.value);
-				if(Local_Password!=null) {
-                    if (Local_Password === password.value) {
-                        localStorage.setItem("oauth","normalLogin");
-                        window.location.href = 'index.html';
-                    }
-                    else {
-                        finalError.innerHTML = 'Please enter valid user name and password';
-                    }
-                }
-                else
-				{
-                    finalError.innerHTML ="Username is not available";
-				}
-			}
-			}
-    function onSignIn(googleUser) {
+	function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
         if (profile != null || profile != undefined || profile != '') {
             localStorage.setItem("oauth","google");
