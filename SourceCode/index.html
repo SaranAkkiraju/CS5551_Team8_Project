@@ -100,15 +100,15 @@
 							</div>
 							<div class="find_item">
 								<div>From</div>
-								<input type="date" class="destination find_input" required="required">
+								<input type="date" class="destination find_input" >
 							</div>
 							<div class="find_item">
 								<div>To</div>
-								<input type="date" class="destination find_input" required="required" >
+								<input type="date" class="destination find_input"  >
 							</div>
 							<div class="find_item">
 								<div>Budget</div>
-								<input type="number" class="destination find_input" required="required" placeholder="">
+								<input type="number" class="destination find_input"  placeholder="">
 							</div>
 							<div class="find_item">
 								<div>Interest</div>
@@ -122,14 +122,45 @@
 								</select>
 							</div>
 							<!--<button class="button find_button">Find</button>-->
+							<div>
+								</br>
+								<input type="button" class="button " ng-click="getSearchResult()" value="Find"/>
+							</div>
 
-							<input type="button" class="button find_button" ng-click="getSearchResult()" value="Find"/>
 							</br>
-							<div class="descriptionBody">
 
+
+							<div >
+
+								<h2  style="color:white;font-family: Candara" ><b>{{listheader}}</b></h2>
+
+								<div  ng-repeat="x in placesArray" style="background: aquamarine;">
+									<table   >
+										<tr style="color: black;">
+											<td><b>{{nameHeader}}</b></td>
+											<td>{{x.substring(x.indexOf("***")+3,x.indexOf("###"))}}</td>
+										</tr>
+										<tr  style="color: black;" >
+											<td><b>{{addressHeader}}</b></td>
+											<td>{{x.substring(0,x.indexOf("***"))}}</td>
+										</tr>
+
+										<tr style="color: black;">
+											<td><b>{{ratingHeader}}</b></td>
+											<td>{{x.substring(x.indexOf("###")+3,x.length)}}</td>
+										</tr>
+										<tr>
+											<td><img ng-src="{{picsArray[$index]}}"/></td>
+										</tr>
+										<tr>
+											<td></td>
+										</tr>
+
+									</table>
+								</div>
 								<!--<p id="errormsg"></p>-->
-								<p style="color: #FFFFFF"><b>{{description}}</b></p>
-								<p style="color: #FFFFFF">{{searchDescription}}</p>
+								<!--<p style="color: #FFFFFF"><b>{{description}}</b></p>-->
+								<!--<p style="color: #FFFFFF">{{searchDescription}}</p>-->
 								<!--<p><b>{{wikiheading}}</b></p>-->
 								<!--<p><a href="{{wiki}}"> {{wiki}}</a> </p>-->
 								<!--<p><img  ng-src="{{searchimage}} "></p>-->
