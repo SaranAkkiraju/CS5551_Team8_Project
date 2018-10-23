@@ -74,16 +74,18 @@ angular.module('indexpage',[])
 
 
                                 }
-                                $scope.weeklyhoursheader="Weeekly Hours";
-                                for(var k=0;k<7;k++)
+                                if(placedata.data.result.opening_hours.weekday_text!=null)
                                 {
-                                    console.log(placedata.data.result.opening_hours.weekday_text[k]);
-                                    var weekday_timings=placedata.data.result.opening_hours.weekday_text[k];
-                                    $scope.weekdayHours.push(weekday_timings);
+                                    $scope.weeklyhoursheader = "Weeekly Hours";
+                                    for (var k = 0; k < 7; k++) {
 
+                                        console.log(placedata.data.result.opening_hours.weekday_text[k]);
+                                        var weekday_timings = placedata.data.result.opening_hours.weekday_text[k];
+                                        $scope.weekdayHours.push(weekday_timings);
+
+                                    }
+                                    console.log($scope.weekdayHours);
                                 }
-                                console.log($scope.weekdayHours);
-
                             }
                         })
 
