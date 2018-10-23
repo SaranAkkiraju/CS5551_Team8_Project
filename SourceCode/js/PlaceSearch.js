@@ -6,6 +6,7 @@ angular.module('indexpage',[])
             $scope.reviews=[];
             //$scope.weekdayHours=[];
             var placeId="";
+            console.log("testing");
             console.log($scope.searchDestination);
             var interestValue=(document.getElementById("interest").value).toLowerCase();
             if(interestValue=="select")
