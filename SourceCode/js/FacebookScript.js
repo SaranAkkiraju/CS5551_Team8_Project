@@ -21,6 +21,7 @@
   // code below.
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
+      localStorage.setItem("oauth","fb");
       statusChangeCallback(response);
     });
   }
