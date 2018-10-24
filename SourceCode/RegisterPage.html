@@ -14,30 +14,31 @@
         <h3 class="widget-title">Register Here</h3>
         <form class="contact-form simple-form">
             <fieldset>
-                <input type="text" style="width: 33%;" ng-model="fname" id="fName" placeholder="First name" required>
+                <input type="text" style="width: 33%;" ng-model="fname"  id="fName" ng-focus="fnamefocusfn()" placeholder="First name" required>
                 <input type="text" style="width: 34%;" ng-model="lname" id="lName" placeholder="Last name">
                 <div id="error" class="error-fields"></div></br>
                 <input type="text" style="width: 70%;" ng-model="uname" id="uName" placeholder="Email ID"
                        ng-focus="focusfn()" ng-blur="blurfn()" required>
                 <h1 style="color: red">{{alreadyExists}}</h1>
                 <div id="error1" class="error-fields"></div></br>
-                <input type="password" style="width: 70%;" ng-model="password" id="pass" placeholder="Password" required>
+                <input type="password" style="width: 70%;" ng-model="password" id="pass" ng-focus="passfocusfn()" placeholder="Password" required>
                 <div id="errorPass" class="check-fields"></div></br>
-                <input type="password" style="width: 70%;" ng-model="confirmpassword" id="confirmPass" placeholder="Confirm Password" required >
+                <input type="password" style="width: 70%;" ng-model="confirmpassword" id="confirmPass" ng-focus="confirmpassfocusfn()" placeholder="Confirm Password" required >
                 <div id="error2" class="error-fields"></div></br>
                 <div id="errorConfirmPass" class="check-fields"></div>
                 <div>
                 <select id="security" name="question" style="width:70%;border: 1px solid #eee;
-    border-left: 3px solid salmon;
+    border-left: 3px solid palegreen;
     border-radius: 5px;
     height: 32px;" >
-                    <option selected disabled >&nbsp;&nbsp;Where is your first job?</option>
+                    <option selected disabled >Choose below</option>
+                        <option>&nbsp;&nbsp;Where is your first job?</option>
                     <option>&nbsp;&nbsp;What is your first movie?</option>
                     <option>&nbsp;&nbsp;What is your favourite place?</option>
                     <option>&nbsp;&nbsp;What is your first school?</option>
                 </select></div>
                 </br>
-                <input type="text" style="width: 70%; left: 0.5%; position: relative;" id="answer" placeholder="Answer" required >
+                <input type="text" style="width: 70%; left: 0.5%; position: relative;" id="answer" ng-model="answer" ng-focus="answerfocusfn()" placeholder="Answer" required >
                 <br><br>
 
                  By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a></br>
@@ -70,7 +71,7 @@
 
         uName.onblur = function() {
             var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-            if (!(re.test(uName.value))) {
+            if (!(re.test(uName.value)) && (uName.value)) {
                 uName.classList.add('invalid');
                 error1.innerHTML = 'Please enter correct Email Address'
             }
@@ -127,56 +128,6 @@
                 error2.innerHTML = "";
             }
         };
-
-
-        function myFunction() {
-            var firstName = document.getElementById("fName");
-            var eamilId = document.getElementById("uName");
-            var password = document.getElementById("pass");
-            var confirmPassword = document.getElementById("confirmPass");
-            var answer = document.getElementById("answer");
-
-            var errorDiv=document.getElementById("error");
-            var errorDiv1=document.getElementById("error1");
-            var errorDiv2=document.getElementById("error2");
-
-            var finalErrorDiv=document.getElementById("finalError");
-            errorDiv.innerHTML="";
-            errorDiv1.innerHTML="";
-
-            finalErrorDiv.innerHTML="";
-            var x= true;
-
-            // if (firstName.value=="" || eamilId.value=="" || password.value=="" || confirmPassword.value=="" || answer.value=="")
-            // {
-            //     finalErrorDiv.innerHTML = 'Mandatory columns should be entered';
-            //     x=false;
-            // }
-            // var alpha= new RegExp('.*\\d.*');
-            // if ((alpha.test(firstName.value))) { // not email
-            //     errorDiv.innerHTML = 'Numbers are not allowed in First Name';
-            //     x=false;
-            // }
-            // var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-            // if (!(re.test(eamilId.value)) && eamilId.value!="") {
-            //     errorDiv1.innerHTML = 'Please enter correct Email Address';
-            //     x=false;
-            // }
-            // if (!(confirmPassword.value.toString()).match(password.value.toString()) || !(password.value.toString()).match(confirmPassword.value.toString()) ) {
-            //     errorDiv2.innerHTML = 'Passwords should be same';
-            //     x=false;
-            // }
-            console.log("X "+x);
-            if (x==true)
-            {
-                console.log("sign up done next to login");
-                var username=document.getElementById("uName").value;
-                var password=document.getElementById('pass').value;
-                localStorage.setItem(username,password);
-                // finalErrorDiv.innerHTML = 'Registration Succesfull';
-				// window.open("LoginPage.html", "_self");
-            }
-        }
     </script>
 </body>
 <!--<script type="text/javascript" src="http://code.angularjs.org/1.1.1/angular.js"></script>-->

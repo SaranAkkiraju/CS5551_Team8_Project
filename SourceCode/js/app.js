@@ -7,10 +7,26 @@ myapp.run(function ($http) {
     $http.defaults.headers.post['dataType'] = 'json'
 });
 myapp.controller('MongoRestController',function($scope,$http,$window){
+
     $scope.focusfn = function () {
         $scope.focus = true;
         $scope.alreadyExists="";
     };
+
+
+    // $scope.unamefocusfn = function () {
+    //     $scope.focus = true;
+    //     $scope.finalErr="";
+    // };
+    // $scope.passfocusfn = function () {
+    //     $scope.focus = true;
+    //     $scope.finalErr="";
+    // };
+    // $scope.confirmpassfocusfn = function () {
+    //     $scope.focus = true;
+    //     $scope.finalErr="";
+    // };
+
     $scope.blurfn = function () {
         $scope.focus = false;
 

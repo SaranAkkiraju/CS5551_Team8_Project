@@ -41,7 +41,6 @@
 								<div class="logo_image"><img src="images/Travel_Explorer.png" alt=""></div>
 								<br>
 								<div>Make memories around the world</div>
-
 							</div>
 						</div>
 
@@ -180,7 +179,7 @@
 									<table   >
 										<tr style="color: black;">
 											<td><b>{{nameHeader}}</b></td>
-											<td>{{x.substring(x.indexOf("***")+3,x.length)}}</td>
+											<td>{{x.substring(x.indexOf("***")+3,x.indexOf("^^^"))}}</td>
 										</tr>
 										<tr  style="color: black;" >
 											<td><b>{{addressHeader}}</b></td>
@@ -191,10 +190,15 @@
 											<td><b>{{ratingHeader}}</b></td>
 											<td>{{x.substring(0,x.indexOf("###"))}}</td>
 										</tr>
+                                        <tr style="color: black;">
+											<td><b>{{description}}</b></td>
+											<!--<td>{{x.substring(0,x.indexOf("###"))}}</td>-->
+										</tr>
 										</br>
 
 										<tr>
-											<td><img ng-src="{{picsArray[$index]}}"/></td>
+											<!--<td><img ng-src="{{picsArray[$index].substring(picsArray[$index].indexOf('###')+3,picsArray[$index].length)}}"/></td>-->
+                                            <td><img ng-src="{{x.substring(x.indexOf('^^^')+3,x.length)}}"/></td>
 										</tr>
 
 									</table>
@@ -221,27 +225,11 @@
 										<tr>
 											<td><b>{{weeklyhoursheader}}</b></td>
 										</tr>
-										<tr style="color: black;">
-											<td >{{weekdayHours[$index]}}</td>
+                                            <!--<tr style="color: black;">{{weekdayHours[$index]}}</tr>-->
+										<tr style="color: black;" ng-repeat="x in weekdayHours[$index]">
+											<td>{{x}}</td>
 										</tr>
-										<!--<tr style="color: black;">-->
-											<!--<td >{{weekdayHours[$index +1]}}</td>-->
-										<!--</tr>-->
-										<!--<tr style="color: black;">-->
-											<!--<td >{{weekdayHours[$index +2]}}</td>-->
-										<!--</tr>-->
-										<!--<tr style="color: black;">-->
-											<!--<td >{{weekdayHours[$index + 3]}}</td>-->
-										<!--</tr>-->
-										<!--<tr style="color: black;">-->
-											<!--<td >{{weekdayHours[$index + 4]}}</td>-->
-										<!--</tr>-->
-										<!--<tr style="color: black;">-->
-											<!--<td >{{weekdayHours[$index + 5]}}</td>-->
-										<!--</tr>-->
-										<!--<tr style="color: black;">-->
-											<!--<td >{{weekdayHours[$index + 6]}}</td>-->
-										<!--</tr>-->
+
 									</table>
 								</div>
 </div>
