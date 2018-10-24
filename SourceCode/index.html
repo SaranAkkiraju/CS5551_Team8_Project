@@ -180,16 +180,16 @@
 									<table   >
 										<tr style="color: black;">
 											<td><b>{{nameHeader}}</b></td>
-											<td>{{x.substring(x.indexOf("***")+3,x.indexOf("###"))}}</td>
+											<td>{{x.substring(x.indexOf("***")+3,x.length)}}</td>
 										</tr>
 										<tr  style="color: black;" >
 											<td><b>{{addressHeader}}</b></td>
-											<td>{{x.substring(0,x.indexOf("***"))}}</td>
+											<td>{{x.substring(x.indexOf("###")+3,x.indexOf("***"))}}</td>
 										</tr>
 
 										<tr style="color: black;">
 											<td><b>{{ratingHeader}}</b></td>
-											<td>{{x.substring(x.indexOf("###")+3,x.length)}}</td>
+											<td>{{x.substring(0,x.indexOf("###"))}}</td>
 										</tr>
 										</br>
 

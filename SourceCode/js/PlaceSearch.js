@@ -6,10 +6,6 @@ angular.module('indexpage',[])
             $scope.reviews=[];
             $scope.weekdayHours=[];
             var placeId="";
-
-            //console.log("testing");
-            console.log($scope.searchDestination);
-
             var interestValue=(document.getElementById("interest").value).toLowerCase();
             if(interestValue=="select")
             {
@@ -19,23 +15,18 @@ angular.module('indexpage',[])
             {
                 interestValue ="&type="+(document.getElementById("interest").value).toLowerCase();
             }
-            //console.log(interestValue);
             $http.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query="+$scope.searchDestination+"+point+of+interest"+interestValue+"&language=en&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E").then(function(data)
             {
                 $scope.listheader="Here are the places of the searched destination and priority";
                 try {
-                    console.log(data);
                     var results=data.data.results;
 
                     var length=data.data.results.length;
 
-                    //console.log(length);
                     for(var j=0;j<length;j++)
                     {
                         var photoReference= results[j].photos[0].photo_reference;
                         placeId=results[j].place_id;
-
-                        //console.log(photoReference);
 
                         $scope.addressHeader="Address :- ";
                         $scope.nameHeader="Place Name :- ";
@@ -44,15 +35,12 @@ angular.module('indexpage',[])
 
 
                         var image="https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference="+photoReference+"&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E";
-                        //console.log(image);
                         $scope.picsArray.push(image);
 
 
 
-                        var appendedstring= results[j].formatted_address+"***"+results[j].name+"###"+results[j].rating;
+                        var appendedstring= results[j].rating+"###"+results[j].formatted_address+"***"+results[j].name;
                         $scope.placesArray.push(appendedstring);
-
-                        console.log($scope.placesArray);
 
                         $http.get("https://maps.googleapis.com/maps/api/place/details/json?placeid="+placeId+"&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E").then(function(placedata)
                         {
@@ -61,7 +49,6 @@ angular.module('indexpage',[])
                             if(placedata.data.result.reviews!= undefined)
                             {
                                 for(var i=0;i<1;i++) {
-                                    //console.log(placedata.data.result.reviews);
 
                                     $scope.reviewHeader = "Reviews";
 
@@ -88,7 +75,6 @@ angular.module('indexpage',[])
                                     $scope.weeklyhoursheader = "Weeekly Hours";
                                     for (var k = 0; k < 7; k++) {
                                             try {
-                                                //console.log(placedata.data.result.opening_hours.weekday_text[k]);
                                                 var weekday_timings = placedata.data.result.opening_hours.weekday_text[k];
                                                 $scope.weekdayHours_week.push(weekday_timings);
                                             }
@@ -119,7 +105,6 @@ angular.module('indexpage',[])
                                             }
                                     }
                                     $scope.weekdayHours.push($scope.weekdayHours_week);
-                                    console.log($scope.weekdayHours);
                             }
                             else
                                 {
@@ -128,7 +113,8 @@ angular.module('indexpage',[])
                         })
 
                     }
-                    //console.log($scope.placesArray );
+                    $scope.placesArray.sort();
+                    console.log($scope.placesArray );
                 }
                 catch(err){
                 }
