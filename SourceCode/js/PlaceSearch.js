@@ -41,7 +41,7 @@ angular.module('indexpage',[])
 
                         $scope.placeids.push(results[j].rating + "###" +results[j].place_id);
 
-                        var image = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference=" + photoReference + "&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E";
+                        var image = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=" + photoReference + "&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E";
                         $scope.placeRatings.push(results[j].rating);
 
                         var appendedstring = results[j].rating + "###" + results[j].formatted_address + "***" + results[j].name + "^^^" + image;
