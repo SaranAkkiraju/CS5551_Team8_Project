@@ -41,7 +41,7 @@ angular.module('indexpage',[])
                         $scope.ratingHeader="Rating :-";
 
 
-                        var image="https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference="+photoReference+"&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E";
+                        var image="https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference="+photoReference+"&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E";
                         //console.log(image);
                         $scope.picsArray.push(image);
 

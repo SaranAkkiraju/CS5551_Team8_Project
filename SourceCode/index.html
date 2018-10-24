@@ -21,6 +21,8 @@
 	<link href="plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="styles/main_styles.css">
 	<link rel="stylesheet" type="text/css" href="styles/responsive.css">
+	<link rel="stylesheet" type="text/css" href="css/offers_styles.css">
+	<link rel="stylesheet" type="text/css" href="css/offers_responsive.css">
 </head>
 <body>
 
@@ -174,67 +176,48 @@
 
 	<!-- Footer -->
 
-	<h2  style="color:white;font-family: Candara" ><b>{{listheader}}</b></h2>
+		<div class="container">
+	<div class="row" ng-repeat="x in placesArray">
+		<div class="col">
+			<div class="items item_grid clearfix">
 
-								<div  ng-repeat="x in placesArray" style="background: aquamarine;">
-									<table   >
-										<tr style="color: black;">
-											<td><b>{{nameHeader}}</b></td>
-											<td>{{x.substring(x.indexOf("***")+3,x.indexOf("###"))}}</td>
-										</tr>
-										<tr  style="color: black;" >
-											<td><b>{{addressHeader}}</b></td>
-											<td>{{x.substring(0,x.indexOf("***"))}}</td>
-										</tr>
+				<!-- Item -->
+				<div class="item clearfix rating_5">
+					<div class="item_image"><img src="{{picsArray[$index]}}" alt=""></div>
+					<div class="item_content">
+						<div class="item_price">{{x.substring(x.indexOf("###")+3,x.length)}}</div>
+						<div class="item_title">{{x.substring(x.indexOf("***")+3,x.indexOf("###"))}}</div>
+						<div class="item_title">{{x.substring(0,x.indexOf("***"))}}</div>
+						<ul>
+							<li>{{weekdayHours[$index]}}</li>
+							<li>{{weekdayHours[$index +1]}}</li>
+							<li>{{weekdayHours[$index +2]}}</li>
+							<li>{{weekdayHours[$index +3]}}</li>
+							<li>{{weekdayHours[$index +4]}}</li>
+							<li>{{weekdayHours[$index +5]}}</li>
+							<li>{{weekdayHours[$index +6]}}</li>
+						</ul>
+						<div class="rating rating_5" data-rating="5">
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+						</div>
+						<div class="item_text">{{reviews[$index]}}</div>
+						<div class="item_more_link"><a href="#">Read More</a></div>
+					</div>
+				</div>
+				<!-- Item -->
 
-										<tr style="color: black;">
-											<td><b>{{ratingHeader}}</b></td>
-											<td>{{x.substring(x.indexOf("###")+3,x.length)}}</td>
-										</tr>
-										</br>
+			</div>
+		</div>
+	</div>
+		
+	</div>
 
-										<tr>
-											<td><img ng-src="{{picsArray[$index]}}"/></td>
-										</tr>
 
-									</table>
-									<table>
-										<tr>
-											<td><b>{{reviewHeader}}</b></td>
-										</tr>
-										<tr style="color: black;" >
-											<td >{{reviews[$index]}}</td>
-										</tr>
 
-										<tr style="color: black;">
-											<td >{{reviews[$index +1]}}</td>
-										</tr>
-										<tr>
-											<td><b>{{weeklyhoursheader}}</b></td>
-										</tr>
-										<tr style="color: black;">
-											<td >{{weekdayHours[$index]}}</td>
-										</tr>
-										<tr style="color: black;">
-											<td >{{weekdayHours[$index +1]}}</td>
-										</tr>
-										<tr style="color: black;">
-											<td >{{weekdayHours[$index +2]}}</td>
-										</tr>
-										<tr style="color: black;">
-											<td >{{weekdayHours[$index + 3]}}</td>
-										</tr>
-										<tr style="color: black;">
-											<td >{{weekdayHours[$index + 4]}}</td>
-										</tr>
-										<tr style="color: black;">
-											<td >{{weekdayHours[$index + 5]}}</td>
-										</tr>
-										<tr style="color: black;">
-											<td >{{weekdayHours[$index + 6]}}</td>
-										</tr>
-									</table>
-								</div>
 </div>
 
 
