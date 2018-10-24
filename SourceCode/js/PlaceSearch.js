@@ -4,10 +4,12 @@ angular.module('indexpage',[])
             $scope.placesArray =[];
             $scope.picsArray=[];
             $scope.reviews=[];
-            //$scope.weekdayHours=[];
+            $scope.weekdayHours=[];
             var placeId="";
-            console.log("testing");
+
+            //console.log("testing");
             console.log($scope.searchDestination);
+
             var interestValue=(document.getElementById("interest").value).toLowerCase();
             if(interestValue=="select")
             {
@@ -50,43 +52,79 @@ angular.module('indexpage',[])
                         var appendedstring= results[j].formatted_address+"***"+results[j].name+"###"+results[j].rating;
                         $scope.placesArray.push(appendedstring);
 
+                        console.log($scope.placesArray);
+
                         $http.get("https://maps.googleapis.com/maps/api/place/details/json?placeid="+placeId+"&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E").then(function(placedata)
                         {
-                            $scope.weekdayHours=[];
-                            if(placedata.data.result.reviews!= undefined) {
-                                for(var i=0;i<5;i++) {
+                            $scope.weekdayHours_week=[];
+                            var documents=[];
+                            if(placedata.data.result.reviews!= undefined)
+                            {
+                                for(var i=0;i<1;i++) {
                                     //console.log(placedata.data.result.reviews);
 
                                     $scope.reviewHeader = "Reviews";
 
-                                    $scope.author_name_header = ("Author Name :- ");
+                                    $scope.author_name_header = "Author Name :- ";
                                     $scope.reviewtime_header = "Time of review :- ";
                                     $scope.comment_header = "Comment :-";
                                     $scope.user_rating_header = "User Rating :- ";
 
 
-                                    $scope.author_name = placedata.data.result.reviews[i].author_name;
+                                    $scope.author_Name = placedata.data.result.reviews[i].author_name;
                                     $scope.reviewtime = placedata.data.result.reviews[i].relative_time_description;
                                     $scope.comment = placedata.data.result.reviews[i].text;
                                     $scope.user_rating = placedata.data.result.reviews[i].rating;
 
-                                    $scope.reviews.push($scope.author_name_header+$scope.author_name + ' , ' +$scope.reviewtime_header+ $scope.reviewtime + ' , ' +$scope.comment_header+ $scope.comment + ' , '+$scope.user_rating_header + $scope.user_rating);
 
+                                    documents.push($scope.author_Name + '@@' + $scope.reviewtime + '##' + $scope.comment + '$$'+$scope.user_rating);
 
                                 }
-                                if(placedata.data.result.opening_hours.weekday_text!=null)
-                                {
+                                for(var x=0;x<documents.length;x++) {
+                                    $scope.reviews.push(documents[x]);
+                                }
+
+
                                     $scope.weeklyhoursheader = "Weeekly Hours";
                                     for (var k = 0; k < 7; k++) {
-
-                                        console.log(placedata.data.result.opening_hours.weekday_text[k]);
-                                        var weekday_timings = placedata.data.result.opening_hours.weekday_text[k];
-                                        $scope.weekdayHours.push(weekday_timings);
-
+                                            try {
+                                                //console.log(placedata.data.result.opening_hours.weekday_text[k]);
+                                                var weekday_timings = placedata.data.result.opening_hours.weekday_text[k];
+                                                $scope.weekdayHours_week.push(weekday_timings);
+                                            }
+                                            catch (e) {
+                                                switch (k) {
+                                                    case 0:
+                                                        $scope.weekdayHours_week.push("Monday:Closed");
+                                                        break;
+                                                    case 1:
+                                                        $scope.weekdayHours_week.push("Tuesday:Closed");
+                                                        break;
+                                                    case 2:
+                                                        $scope.weekdayHours_week.push("Wednesday:Closed");
+                                                        break;
+                                                    case 3:
+                                                        $scope.weekdayHours_week.push("Thursday:Closed");
+                                                        break;
+                                                    case 4:
+                                                        $scope.weekdayHours_week.push("Friday:Closed");
+                                                        break;
+                                                    case 5:
+                                                        $scope.weekdayHours_week.push("Saturday:Closed");
+                                                        break;
+                                                    case 6:
+                                                        $scope.weekdayHours_week.push("Sunday:Closed");
+                                                        break;
+                                                }
+                                            }
                                     }
+                                    $scope.weekdayHours.push($scope.weekdayHours_week);
                                     console.log($scope.weekdayHours);
-                                }
                             }
+                            else
+                                {
+
+                                }
                         })
 
                     }

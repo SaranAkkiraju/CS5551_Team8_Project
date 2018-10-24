@@ -85,8 +85,8 @@
 	<div class="find">
 		<!-- Image by https://unsplash.com/@garciasaldana_ -->
 		<div class="find_background parallax-window" data-parallax="scroll" data-image-src="images/newsletter.jpg" data-speed="0.8"></div>
-		<div class="container">
-			<div class="row">
+		<div class="container" >
+			<div class="row" >
 				<div class="col-12">
 					<div class="find_title text-center">Make Memories Around The World
 					</div>
@@ -176,7 +176,7 @@
 
 	<h2  style="color:white;font-family: Candara" ><b>{{listheader}}</b></h2>
 
-								<div  ng-repeat="x in placesArray" style="background: aquamarine;">
+								<div class="oputudiv"  ng-repeat="x in placesArray" style="background: aquamarine;">
 									<table   >
 										<tr style="color: black;">
 											<td><b>{{nameHeader}}</b></td>
@@ -198,41 +198,50 @@
 										</tr>
 
 									</table>
-									<table>
-										<tr>
-											<td><b>{{reviewHeader}}</b></td>
-										</tr>
-										<tr style="color: black;" >
-											<td >{{reviews[$index]}}</td>
-										</tr>
 
-										<tr style="color: black;">
-											<td >{{reviews[$index +1]}}</td>
-										</tr>
+                                    <div><h3><b>{{reviewHeader}}</b></h3></div>
+                                    <div >
+                                        <table style="color: black;" >
+                                            <tr>
+                                                <td><b>{{author_name_header}}</b> {{reviews[$index].substring(0,reviews[$index].indexOf('@@'))}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>{{reviewtime_header}}</b>{{reviews[$index].substring(reviews[$index].indexOf('@@')+2,reviews[$index].indexOf('##'))}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>{{comment_header}}</b> {{reviews[$index].substring(reviews[$index].indexOf('##')+2,reviews[$index].indexOf('$$'))}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>{{user_rating_header}}</b> {{reviews[$index].substring(reviews[$index].indexOf('$$')+2,reviews[$index].length)}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                        <table>
 										<tr>
 											<td><b>{{weeklyhoursheader}}</b></td>
 										</tr>
 										<tr style="color: black;">
 											<td >{{weekdayHours[$index]}}</td>
 										</tr>
-										<tr style="color: black;">
-											<td >{{weekdayHours[$index +1]}}</td>
-										</tr>
-										<tr style="color: black;">
-											<td >{{weekdayHours[$index +2]}}</td>
-										</tr>
-										<tr style="color: black;">
-											<td >{{weekdayHours[$index + 3]}}</td>
-										</tr>
-										<tr style="color: black;">
-											<td >{{weekdayHours[$index + 4]}}</td>
-										</tr>
-										<tr style="color: black;">
-											<td >{{weekdayHours[$index + 5]}}</td>
-										</tr>
-										<tr style="color: black;">
-											<td >{{weekdayHours[$index + 6]}}</td>
-										</tr>
+										<!--<tr style="color: black;">-->
+											<!--<td >{{weekdayHours[$index +1]}}</td>-->
+										<!--</tr>-->
+										<!--<tr style="color: black;">-->
+											<!--<td >{{weekdayHours[$index +2]}}</td>-->
+										<!--</tr>-->
+										<!--<tr style="color: black;">-->
+											<!--<td >{{weekdayHours[$index + 3]}}</td>-->
+										<!--</tr>-->
+										<!--<tr style="color: black;">-->
+											<!--<td >{{weekdayHours[$index + 4]}}</td>-->
+										<!--</tr>-->
+										<!--<tr style="color: black;">-->
+											<!--<td >{{weekdayHours[$index + 5]}}</td>-->
+										<!--</tr>-->
+										<!--<tr style="color: black;">-->
+											<!--<td >{{weekdayHours[$index + 6]}}</td>-->
+										<!--</tr>-->
 									</table>
 								</div>
 </div>
