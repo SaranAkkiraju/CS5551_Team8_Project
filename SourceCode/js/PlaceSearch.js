@@ -39,6 +39,14 @@ angular.module('indexpage',[])
                 console.log(interest);
                 interestValue ="&type="+interest;
             }
+            var alpha= new RegExp('.*\\d.*');
+            if ((alpha.test($scope.searchDestination)) && ($scope.searchDestination)) { // not email
+                $scope.finalErr = '              Numbers are not allowed in Destination';
+            }
+            else
+            {
+                $scope.finalErr = '';
+            }
 
             //Here the code is written to get the places of particular destination with.without interest.
             //From the output of url request we take the placeid,name,address and rating
