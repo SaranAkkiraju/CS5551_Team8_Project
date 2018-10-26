@@ -194,6 +194,7 @@
 
                             <div class="item_text"><h3>{{x.substring(x.indexOf("***")+3,x.indexOf("^^^"))}}</h3></div>
                             <div class="item_text"><h4>{{x.substring(x.indexOf("###")+3,x.indexOf("***"))}}</h4></div>
+							<div class="item_text"><h4>{{searchDescription[$index]}}</h4></div>
                             <div class="item_text">{{x.substring(0,x.indexOf("###"))}} <i class="fa fa-star"></i> </div>
 							<ul>
 								<li><table><tr ng-repeat="x in weekdayHours[$index]">

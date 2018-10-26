@@ -6,6 +6,8 @@ angular.module('indexpage',[])
             $scope.placeRatings=[];
             $scope.weekdayHours=[];
             $scope.placeids=[];
+            $scope.placeNames=[];
+            $scope.searchDescription=[];
 
             //Getting the interest field value if the user doesn't select anything no interest is passed to the api request.
             var value=(document.getElementById("interest").value).toLowerCase();
@@ -58,7 +60,8 @@ angular.module('indexpage',[])
                     $scope.listheader = "Here are the places of the searched destination and priority";
                     // try {
                         var results = data.data.results.sort((a, b) => a.rating - b.rating);
-                    results.reverse();
+                        results.reverse();
+                        console.log(results.reverse());
 
                         var length = data.data.results.length;
 
@@ -83,6 +86,7 @@ angular.module('indexpage',[])
 
                             var appendedstring = results[j].rating + "###" + results[j].formatted_address + "***" + results[j].name + "^^^" + image;
                             $scope.placesArray.push(appendedstring);
+                            $scope.placeNames.push(results[j].name);
                         }
 
                         //$scope.placesArray.sort();
@@ -102,12 +106,24 @@ angular.module('indexpage',[])
             setTimeout(function ()
             {
                 try{
-                    // $scope.placeids.sort((a, b) => a.rating - b.rating);
-                    // placeids.reverse();
                     for( var z=0;z<$scope.placeids.length;z++)
                     {
                         var placeId=$scope.placeids[z].substring($scope.placeids[z].indexOf("###")+3,$scope.placeids[z].length);
-                        //console.log(placeId);
+                        var place_Name=$scope.placeNames[z];
+                        //console.log(place_Name);
+
+                        $http.get("https://kgsearch.googleapis.com/v1/entities:search?query="+place_Name+"&key=AIzaSyCZbMz2VUDfsNIawl7W9W64FpZp8gsoh10&limit=1&indent=True").success(function(descriptiondata)
+                        {
+                            try {
+                                console.log(descriptiondata);
+
+                                var description=descriptiondata.itemListElement[0].result.detailedDescription.articleBody;
+                                $scope.searchDescription.push(description);
+                                //console.log($scope.searchDescription);
+                            }
+                            catch(err){
+                            }
+                        })
 
                         $http.get("https://maps.googleapis.com/maps/api/place/details/json?placeid="+placeId+"&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E").then(function(placedata)
                         {
