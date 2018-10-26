@@ -6,7 +6,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Destino project">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<meta name="google-signin-client_id" content="980135476714-ibh5p28a48dv40h32eadbeagnfn5qq3m.apps.googleusercontent.com">
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" type="application/javascript"></script>
@@ -23,6 +22,10 @@
 	<link rel="stylesheet" type="text/css" href="styles/responsive.css">
 	<link rel="stylesheet" type="text/css" href="css/offers_styles.css">
 	<link rel="stylesheet" type="text/css" href="css/offers_responsive.css">
+
+
+
+
 </head>
 <body>
 
@@ -103,7 +106,7 @@
 						<form action="#" id="find_form" class="find_form d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-between justify-content-start flex-wrap">
 							<div class="find_item">
 								<div>Destination:</div>
-								<input type="text"  class="destination find_input"   ng-model="searchDestination" placeholder="Enter your Destination">
+								<input type="text"  class="destination find_input" id="searchDestination"   ng-model="searchDestination" placeholder="Enter your Destination">
 								<h5 style="color: red">{{finalErr}}</h5>
 							</div>
 							<div class="find_item">
@@ -132,7 +135,8 @@
 							<!--<button class="button find_button">Find</button>-->
 							<div>
 								</br>
-								<input type="button" class="button " ng-click="getSearchResult()" value="Find"/>
+								<input type="button" class="button" style="color: #fe435b" ng-click="getSearchResult()" value="Find"/>
+								<input type="button" class="button" style="color: #fe435b" ng-click="viewDirections()" value="View Places"/>
 							</div>
 
 							
@@ -224,12 +228,23 @@
 
 
 </div>
-
 <script>
     var url=window.location.href;
     var userName=(url.substr(45)).replace("%20"," ");
+
     console.log("It is !!!!!!!!!!!"+userName);
-    document.getElementById("userDetails").textContent ="Welcome " +userName.toUpperCase()+"!!!! ";
+    if(userName.indexOf("place")<0) {
+        document.getElementById("userDetails").textContent = "Welcome " + userName.toUpperCase() + "!!!! ";
+    }
+    else {
+        document.getElementById("userDetails").textContent = "";
+        // console.log("i am here");
+        // document.getElementById("searchDestination").value ="aaaaaaaaa" ;
+    }
+
+
+
+
 </script>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="styles/bootstrap4/popper.js"></script>
