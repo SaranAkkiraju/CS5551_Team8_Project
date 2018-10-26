@@ -153,7 +153,7 @@ myapp.controller('getController',function($scope,$http,$window){
                         for (i = 0; i < d.data.length; i++) {
                             if (d.data[i].password == $scope.password) {
                                 console.log("matched");
-                                $window.location.href = 'index.html';
+                                $window.location.href = 'index.html?'+d.data[i].firstname;
                             }
                             else {
                                 $scope.finalErr = "            Please enter valid user name and password";

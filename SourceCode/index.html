@@ -72,11 +72,17 @@
 	<!-- Home -->
 
 	<div class="home">
-		<div class="home_background" style="background-image:url(images/home.jpg)"></div>
-		<div class="home_content">
+
+        <div class="home_background" style="background-image:url(images/home.jpg)"></div>
+
+
+        <div class="home_content">
 			<div class="home_content_inner">
-				<!--<div class="home_text_large">discover</div>-->
-				<div class="home_text_small">Travel Explorer</div>
+				<!--<div class="home_text_small">discover</div>-->
+				<div class="home_text_small">
+                    <h1><label id="userDetails"></label></h1>
+                    <h1>Travel Explorer</h1>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -218,8 +224,12 @@
 
 </div>
 
-
-
+<script>
+    var url=window.location.href;
+    var userName=(url.substr(45)).replace("%20"," ");
+    console.log("It is !!!!!!!!!!!"+userName);
+    document.getElementById("userDetails").textContent ="Welcome " +userName.toUpperCase()+"!!!! ";
+</script>
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="styles/bootstrap4/popper.js"></script>
 <script src="styles/bootstrap4/bootstrap.min.js"></script>
