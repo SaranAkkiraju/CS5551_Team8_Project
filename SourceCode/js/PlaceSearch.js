@@ -58,6 +58,7 @@ angular.module('indexpage',[])
                     $scope.listheader = "Here are the places of the searched destination and priority";
                     // try {
                         var results = data.data.results.sort((a, b) => a.rating - b.rating);
+                    results.reverse();
 
                         var length = data.data.results.length;
 
@@ -101,7 +102,8 @@ angular.module('indexpage',[])
             setTimeout(function ()
             {
                 try{
-                    $scope.placeids.sort((a, b) => a.rating - b.rating);
+                    // $scope.placeids.sort((a, b) => a.rating - b.rating);
+                    // placeids.reverse();
                     for( var z=0;z<$scope.placeids.length;z++)
                     {
                         var placeId=$scope.placeids[z].substring($scope.placeids[z].indexOf("###")+3,$scope.placeids[z].length);
