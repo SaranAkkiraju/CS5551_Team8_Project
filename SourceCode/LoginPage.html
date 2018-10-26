@@ -21,7 +21,7 @@
             // console.log('Username: ' + profile.getName());
             // console.log('Image URL: ' + profile.getImageUrl());
             // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-            window.location.href = 'index.html';
+            window.location.href = 'index.html?'+ profile.getName();
         }
         else {
             alert('Google Sign In Failed!');
