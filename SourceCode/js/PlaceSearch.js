@@ -1,5 +1,28 @@
 angular.module('indexpage',[])
-    .controller('indexctrl', function($scope, $http) {
+    .controller('indexctrl', function($scope, $http,$window) {
+
+        var url=window.location.href;
+        var userName=(url.substr(45)).replace("%20"," ");
+
+        console.log("It is angular !!!!!!!!!!!"+userName);
+        console.log("It is angular !!!!!!!!!!!"+userName.indexOf("place"));
+        if(userName.indexOf("place")==0) {
+            console.log("ngular i am here");
+            $scope.searchDestination=(url.substr(50,url.indexOf("&&")-50)).replace("%20"," ");
+            // $scope.searchDestination=(url.substr(50,url.indexOf("&&")-50)).replace("%20"," ");
+        }
+        // else {
+        //     document.getElementById("userDetails").textContent = "";
+        //     console.log("i am here");
+        //     document.getElementById("searchDestination").value ="aaaaaaaaa" ;
+        // }
+
+
+        $scope.viewDirections = function() {
+            $window.location.href = 'directions.html?'+$scope.searchDestination+'&&'+(document.getElementById("interest").value).toLowerCase();
+        };
+
+
         $scope.getSearchResult = function() {
             $scope.placesArray =[];
             $scope.reviews=[];
