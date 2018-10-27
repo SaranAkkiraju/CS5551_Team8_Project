@@ -1138,6 +1138,13 @@ section
 	height: 56px;
 	background: #131a2f;
 }
+.button123
+{
+	display: inline-block;
+	width: 100px;
+	height: 56px;
+	background: #131a2f;
+}
 .button a
 {
 	display: block;
