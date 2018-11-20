@@ -1,37 +1,4 @@
-@charset "utf-8";
-/* CSS Document */
 
-/******************************
-
-[Table of Contents]
-
-1. Fonts
-2. Body and some general stuff
-3. Home
-4. Header
-	4.1 Logo
-	4.2 Navigation
-	4.3 Search
-	4.4 Hamburger
-5. Menu
-	5.1 Menu Social
-	5.2 Menu copyright
-6. Elements
-	6.1 Buttons
-	6.2 Accordions & Tabs
-		6.2.1 Accordions
-		6.2.2 Tabs
-	6.3 Loaders
-	6.4 Milestones
-	6.5 Icon Boxes
-7. Footer
-
-
-******************************/
-
-/***********
-1. Fonts
-***********/
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900');
 
