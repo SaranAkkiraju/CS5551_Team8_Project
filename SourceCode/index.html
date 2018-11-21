@@ -56,6 +56,7 @@
 								<li class="main_nav_item"><a href="profile.html">Profile</a></li>
 								<li class="main_nav_item"><a href="about.html">About us</a></li>
 								<li class="main_nav_item"><a href="contact.html">Contact</a></li>
+								<li class="main_nav_item"><a href="history.html">History</a></li>
 								<li class="main_nav_item" onclick="signOut();"><a href="" >Sign Out</a></li>
 							</ul>
 						</nav>
@@ -107,22 +108,22 @@
 						<form action="#" id="find_form" class="find_form d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-between justify-content-start flex-wrap">
 							<div class="find_item">
 								<div>Destination:</div>
-								<input type="text"  class="destination find_input" id="searchDestination"   ng-model="searchDestination" placeholder="Enter your Destination">
+								<input type="text"  class="destination find_input" id="searchDestination" ng-model="searchDestination" placeholder="Enter your Destination">
 								<h5 style="color: red">{{finalErr}}</h5>
 							</div>
 							<div class="find_item">
 								<div>From</div>
-								<input type="date"  class="destination find_input" >
+								<input type="date" ng-model="from" class="destination find_input" >
 							</div>
 							<div class="find_item">
 								<div>To</div>
-								<input type="date"  class="destination find_input"  >
+								<input type="date" ng-model="to" class="destination find_input"  >
 							</div>
 							<div class="find_item">
 								<div>Budget</div>
-								<input type="number"  class="destination find_input"  placeholder="">
+								<input type="text" ng-model="budget" class="destination find_input"  placeholder="">
 							</div>
-							<div class="find_item">
+							<div class="find_item" ng-model="interest">
 								<div>Interest</div>
 								<select name="interest" id="interest" class="dropdown_item_select find_input">
 									<option>Select</option>

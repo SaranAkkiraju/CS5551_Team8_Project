@@ -80,11 +80,59 @@ app.get('/updateData', function (req, res) {
     });
 });
 
+app.post('/insdata', function (req, res) {
+    MongoClient.connect(url, function(err, client) {
+        if(err)
+        {
+            res.write("Failed, Error while cosnnecting to Database");
+            res.end();
+        }
+        var db= client.db();
+        insertSearchDocument(db, req.body, function() {
+            res.write("Successfully inserted");
+            res.end();
+        });
+    });
+});
+
+var insertSearchDocument = function(db, data, callback) {
+    db.collection('aseprojsearch').insertOne( data, function(err, result) {
+        if(err)
+        {
+            res.write("Registration Failed, Error While Registering");
+            res.end();
+        }
+        console.log("Inserted a document into the asedemo collection.");
+        callback();
+    });
+};
 
 var server = app.listen(8081,function () {
     var host = server.address().address
     var port = server.address().port
     console.log("Example app listening at http://%s:%s", host, port)
+});
+
+
+app.get('/getHistoryData', function (req, res) {
+    var searchKeywords = req.query.keywords;
+    console.log("Param are "+searchKeywords);
+    MongoClient.connect(url, function(err, db) {
+        if(err)
+        {
+            res.write("Failed, Error while cosnnecting to Database");
+            res.end();
+        }
+        if (err) throw err;
+        var dbo = db.db("apps");
+        var query = { username: searchKeywords };
+        dbo.collection("aseprojsearch").find(query).toArray(function(err, result) {
+            if (err) throw err;
+            // console.log(result[0].major);
+            db.close();
+            res.json(result);
+        });
+    });
 });
 
 app.get('/getDataEmail', function (req, res) {
