@@ -7,6 +7,46 @@ myapp.run(function ($http) {
     $http.defaults.headers.post['dataType'] = 'json'
 });
 
+
+myapp.controller('gethistory',function($scope,$http){
+    var url=window.location.href;
+    var userName=(url.substr(53)).replace("%20"," ");
+    console.log("It is angular get profile !!!!!!!!!!!"+localStorage.getItem("userid123"));
+    var config = {
+        headers : {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+        }
+    }
+    // // var req = $http.get('http://127.0.0.1:8081/getData');
+    $http.get('http://127.0.0.1:8081/getHistoryData?keywords='+localStorage.getItem("userid123")).then(function(d)
+        {
+            // console.log("document is ok"+document);
+            console.log("val "+JSON.stringify({d: d}));
+
+            var document=[];
+            for (i=0;i<d.data.length;i++)
+            {
+                // console.log("it is "+d.data[i].classID);
+                // console.log("it is "+d.data[i].major);
+                document.push(new Array(d.data[i].username+'!!!'+d.data[i].destination+'@@@'+d.data[i].from+'###'+d.data[i].to+'$$$'+d.data[i].budget+'%%%'+d.data[i].interest));
+            }
+
+            $scope.fullDocument =[];
+            for(var x=0;x<document.length;x++) {
+                var val= document[x];
+                console.log('Data is '+document[x]);
+                $scope.fullDocument.push(val.toString());
+            }
+
+        },function(err)
+        {
+            console.log(err);
+        }
+    )
+
+});
+
+
 myapp.controller('getprofile',function($scope,$http){
     console.log("It is angular get profile !!!!!!!!!!!"+localStorage.getItem("userid123"));
     var config = {

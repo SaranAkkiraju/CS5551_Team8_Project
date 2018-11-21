@@ -203,5 +203,28 @@ angular.module('indexpage',[])
 
                 }
             }, 1000);
+
+            var dataParams = {
+                'username' : localStorage.getItem("userid123"),
+                'destination' : $scope.searchDestination,
+                'from' : $scope.from,
+                'to' : $scope.to,
+                'budget': $scope.budget,
+                'interest' : document.getElementById("interest").value
+            };
+            var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                }
+            }
+            var req = $http.post('http://127.0.0.1:8081/insdata',dataParams);
+            req.success(function(data, status, headers, config) {
+                $scope.message = data;
+                console.log("here "+data);
+            });
+            req.error(function(data, status, headers, config) {
+                alert( "failure message: " + JSON.stringify({data: data}));
+            });
+
         }
     });
