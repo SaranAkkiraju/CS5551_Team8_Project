@@ -26,6 +26,10 @@
                 <input type="password" style="width: 70%;" ng-model="confirmpassword" id="confirmPass" ng-focus="confirmpassfocusfn()" placeholder="Confirm Password" required >
                 <div id="error2" class="error-fields"></div></br>
                 <div id="errorConfirmPass" class="check-fields"></div>
+
+                <input type="text" style="width: 70%;" ng-model="mobile" id="mobilePhone" placeholder="Mobile phone" optional><br>
+                <div id="error3" class="error-fields"></div></br>
+
                 <div>
                 <select id="security" name="question" style="width:70%;border: 1px solid #eee;
     border-left: 3px solid palegreen;
@@ -68,6 +72,27 @@
             if (this.classList.contains('invalid')) {
                 this.classList.remove('invalid');
                 error.innerHTML = "";
+            }
+        };
+
+        mobilePhone.onblur = function() {
+
+            var re1 = /^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/;
+            if (!(re1.test(mobilePhone.value)) && mobilePhone.value!="") {
+                mobilePhone.classList.add('invalid');
+                error3.innerHTML = 'Please enter valid number'
+            }
+        };
+
+        mobilePhone.onkeyup=function()
+        {
+            errorConfirmPass.innerHTML="";
+        }
+
+        mobilePhone.onfocus = function() {
+            if (this.classList.contains('invalid')) {
+                this.classList.remove('invalid');
+                error3.innerHTML = "";
             }
         };
 

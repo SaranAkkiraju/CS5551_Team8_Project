@@ -6,6 +6,49 @@ myapp.run(function ($http) {
     $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
     $http.defaults.headers.post['dataType'] = 'json'
 });
+
+myapp.controller('getprofile',function($scope,$http){
+    console.log("It is angular get profile !!!!!!!!!!!"+localStorage.getItem("userid123"));
+    var config = {
+        headers : {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+        }
+    }
+    // // var req = $http.get('http://127.0.0.1:8081/getData');
+    $http.get('http://127.0.0.1:8081/getData?keywords='+localStorage.getItem("userid123")).then(function(d)
+        {
+            console.log("document is ok"+document);
+            console.log("val "+JSON.stringify({d: d}));
+            console.log("Before "+$scope.zzzname);
+            $scope.zzzname= d.data[0].firstname;
+            $scope.lname= d.data[0].lastname;
+            $scope.uname= d.data[0].username;
+            $scope.phone= d.data[0].mobileNumber;
+            console.log("After "+d.data[0].phone);
+            // $window.location.href = 'profile.html';
+        },function(err)
+        {
+            console.log(err);
+        }
+    )
+
+    $scope.updatedoc = function() {
+        // var url=window.location.href;
+        // var userName=(url.substr(53)).replace("%20"," ");
+        console.log("It is angular get profile !!!!!!!!!!!"+localStorage.getItem("userid123"));
+        $http.get('http://127.0.0.1:8081/updateData?keywords='+localStorage.getItem("userid123")+'@@@'+$scope.phone).success(function(d)
+            {
+                console.log("Updated");
+                // $window.location.href = 'profile.html?'+'userName';
+            },function(err)
+            {
+                console.log(err);
+            }
+        )
+    };
+
+});
+
 myapp.controller('MongoRestController',function($scope,$http,$window){
 
     $scope.focusfn = function () {
@@ -60,7 +103,8 @@ myapp.controller('MongoRestController',function($scope,$http,$window){
             'lastname' : $scope.lname,
             'username' : $scope.uname,
             'password' : $scope.password,
-            'confirmpassword' : $scope.confirmpassword
+            'confirmpassword' : $scope.confirmpassword,
+            'mobileNumber' : $scope.mobile
         };
         x=true;
         if (!($scope.fname)  || !($scope.uname) || !($scope.password) || !($scope.confirmpassword))
@@ -83,6 +127,13 @@ myapp.controller('MongoRestController',function($scope,$http,$window){
             $scope.finalErr = '                  Passwords should be same';
             x=false;
         }
+
+        var re1 = /^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/;
+        if (!(re1.test($scope.mobile)) && ($scope.mobile)) {
+            $scope.finalErr = '                  Please enter valid number';
+            x=false;
+        }
+
         var config = {
             headers : {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
@@ -153,6 +204,7 @@ myapp.controller('getController',function($scope,$http,$window){
                         for (i = 0; i < d.data.length; i++) {
                             if (d.data[i].password == $scope.password) {
                                 console.log("matched");
+                                localStorage.setItem("userid123",d.data[i].username);
                                 $window.location.href = 'index.html?'+d.data[i].firstname;
                             }
                             else {

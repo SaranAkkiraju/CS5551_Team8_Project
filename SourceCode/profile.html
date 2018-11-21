@@ -12,8 +12,16 @@
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive1.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_styles.css">
 <link rel="stylesheet" type="text/css" href="styles/contact_responsive.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
 </head>
-<body>
+
+<script>
+    function profilepg() {
+        window.location.href = 'profile.html?'+ localStorage.getItem("userid123");
+    }
+</script>
+
+<body ng-app="demoMongo" ng-controller="getprofile">
 
 <div class="super_container">
 	
@@ -42,7 +50,8 @@
 								<li class="main_nav_item active"><a href="#">Profile</a></li>
 								<li class="main_nav_item"><a href="about.html">About us</a></li>
 								<li class="main_nav_item"><a href="contact.html">Contact</a></li>
-								<li class="main_nav_item" onclick="signOut();"><a href="" >Sign Out</a></li>
+								<li class="main_nav_item"><a href="LoginPage.html">Sign Out</a></li>
+								<!--<li class="main_nav_item" onclick="signOut();"><a href="" >Sign Out</a></li>-->
 							</ul>
 						</nav>
 						<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
@@ -151,4 +160,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
 <script src="js/contact_custom.js"></script>
 </body>
+<!--<script type="text/javascript" src="https://code.angularjs.org/1.1.1/angular.js"></script>-->
+<!--<script type="text/javascript" src="https://code.angularjs.org/1.1.1/angular-resource.js"></script>-->
+<!--<script type="text/javascript" src="https://code.angularjs.org/1.1.1/angular-sanitize.js"></script>-->
+<script src="js/app.js"></script>
 </html>
