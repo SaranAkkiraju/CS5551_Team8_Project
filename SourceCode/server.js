@@ -61,6 +61,25 @@ var insertDocument = function(db, data, callback) {
     });
 };
 
+app.get('/updateData', function (req, res) {
+    var searchKeywords = req.query.keywords.substring(0,req.query.keywords.indexOf('@@@'));
+    var searchKeywords1 = req.query.keywords.substring(req.query.keywords.indexOf('@@@')+3,req.query.keywords.length);
+    console.log("Param are searchKeywords"+searchKeywords);
+    console.log("Param are searchKeywords"+searchKeywords1);
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("apps");
+        var query = { username: searchKeywords };
+        var newvalues = { $set: {mobileNumber: searchKeywords1} };
+        dbo.collection("aseproj").updateOne(query, newvalues, function(err, res) {
+            if (err) throw err;
+            // console.log(result[0].major);
+            console.log("1 document updated");
+            db.close();
+        });
+    });
+});
+
 
 var server = app.listen(8081,function () {
     var host = server.address().address
