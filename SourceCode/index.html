@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<title>Travel Explorar</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,8 +23,47 @@
 	<link rel="stylesheet" type="text/css" href="styles/responsive.css">
 	<link rel="stylesheet" type="text/css" href="css/offers_styles.css">
 	<link rel="stylesheet" type="text/css" href="css/offers_responsive.css">
+<style>
+	/* The Modal (background) */
+	.modal {
+		display: none; /* Hidden by default */
+		position: fixed; /* Stay in place */
+		z-index: 1; /* Sit on top */
+		padding-top: 100px; /* Location of the box */
+		left: 0;
+		top: 0;
+		width: 100%; /* Full width */
+		height: 100%; /* Full height */
+		overflow: auto; /* Enable scroll if needed */
+		background-color: rgb(0,0,0); /* Fallback color */
+		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	}
 
+	/* Modal Content */
+	.modal-content {
+		background-image: url("images/fact_background.jpg");;
+		margin: auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 80%;
+	}
 
+	/* The Close Button */
+	.close {
+		color: #aaaaaa;
+		float: right;
+		font-size: 10px;
+		font-weight: bold;
+	}
+
+	.close:hover,
+	.close:focus {
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+</style>
 
 
 </head>
@@ -166,28 +206,6 @@
 
 
 							</div>
-	<!-- Top Destinations -->
-
-	
-	<!-- Last -->
-
-	
-
-	<!-- Video -->
-
-	
-	<!-- Popular -->
-
-	
-	<!-- Special -->
-
-	
-	<!-- Newsletter -->
-
-
-
-	<!-- Footer -->
-
 	<div class="container">
 		<div class="row" ng-repeat="x in placesArray">
 			<div class="col">
@@ -208,6 +226,17 @@
 								</tr></table></li>
 
 							</ul>
+
+							<button class={{$index}}  onclick ="abc(this.className)">Read Review</button>
+
+							<div id ={{$index}}  style="visibility: hidden; display:none;" >
+								<span class="close">click outside to close</span>
+								<div class="item_text"><h2>User Reviews</h2>   </div>
+								<div class="item_text"><b>{{author_name_header}}</b>   <b>{{user_rating_header}} </b> {{reviews[$index].substring(reviews[$index].indexOf('$$')+2,reviews[$index].length)}}</div>
+								<div class="item_text" id="please">{{comment_header}}</b> {{reviews[$index].substring(reviews[$index].indexOf('##')+2,reviews[$index].indexOf('$$'))}}
+								</div>
+							</div>
+
 							<!--<div class="rating rating_5" data-rating="5">
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>
@@ -215,9 +244,59 @@
 								<i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>
 							</div>-->
-							<div class="item_text"><b>{{author_name_header}}</b> {{reviews[$index].substring(0,reviews[$index].indexOf('@@'))}} <b>{{user_rating_header}} </b> {{reviews[$index].substring(reviews[$index].indexOf('$$')+2,reviews[$index].length)}}</div>
-							<div class="item_text">{{comment_header}}</b> {{reviews[$index].substring(reviews[$index].indexOf('##')+2,reviews[$index].indexOf('$$'))}}</div>
-							<!--<div class="item_more_link"><a href="#">Read More</a></div>-->
+
+
+
+							<!-- The Modal -->
+							<div id="myModal" class="modal">
+								<!-- Modal content -->
+								<div class="modal-content" id="finalpop">
+
+
+								</div>
+							</div>
+
+
+							<script>
+								var id_gobal=0;
+                                // Get the modal
+                                var modal = document.getElementById('myModal');
+
+                                // Get the button that opens the modal
+                                var btn = document.getElementById("myBtn");
+
+                                // Get the <span> element that closes the modal
+                                var span = document.getElementsByClassName("close")[0];
+
+                                // When the user clicks the button, open the modal
+                                function abc(id) {
+                                     id_gobal=id;
+
+                                    document.getElementById("finalpop").innerHTML = document.getElementById(id_gobal).innerHTML ;
+
+                                    modal.style.display = "block";
+                                }
+                                // When the user clicks on <span> (x), close the modal
+                                span.onclick = function() {
+                                    modal.style.display = "none";
+                                }
+
+                                // When the user clicks anywhere outside of the modal, close it
+                                window.onclick = function(event) {
+                                    if (event.target == modal) {
+                                        modal.style.display = "none";
+                                    }
+                                }
+
+							</script>
+
+
+
+
+
+
+
+
 						</div>
 					</div>
 					<!-- Item -->
@@ -243,9 +322,6 @@
         // console.log("i am here");
         // document.getElementById("searchDestination").value ="aaaaaaaaa" ;
     }
-
-
-
 
 </script>
 <script src="js/jquery-3.2.1.min.js"></script>
