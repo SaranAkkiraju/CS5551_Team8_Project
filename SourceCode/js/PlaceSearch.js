@@ -2,12 +2,12 @@ angular.module('indexpage',[])
     .controller('indexctrl', function($scope, $http,$window) {
 
         var url=window.location.href;
-        var userName=(url.substr(45)).replace("%20"," ");
+        var userName=(url.substring(url.indexOf("?")+1,url.length)).replace("%20"," ");
 
         console.log("It is angular !!!!!!!!!!!"+userName);
         console.log("It is angular !!!!!!!!!!!"+userName.indexOf("place"));
         if(userName.indexOf("place")==0) {
-            console.log("ngular i am here");
+            console.log("angular i am here");
             $scope.searchDestination=(url.substr(50,url.indexOf("&&")-50)).replace("%20"," ");
             // $scope.searchDestination=(url.substr(50,url.indexOf("&&")-50)).replace("%20"," ");
         }

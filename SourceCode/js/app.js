@@ -10,7 +10,7 @@ myapp.run(function ($http) {
 
 myapp.controller('gethistory',function($scope,$http){
     var url=window.location.href;
-    var userName=(url.substr(53)).replace("%20"," ");
+    var userName=(url.substring(url.indexOf("?")+1,url.length)).replace("%20"," ");
     console.log("It is angular get profile !!!!!!!!!!!"+localStorage.getItem("userid123"));
     var config = {
         headers : {
