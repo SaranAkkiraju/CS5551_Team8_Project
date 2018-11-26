@@ -9,6 +9,12 @@ var cors = require('cors');
 var app = express();
 var request=require("request");
 
+var port = process.env.PORT || 8080;
+
+app.use(express.static(__dirname + '/public'));
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 const nodemailer = require ('nodemailer');
 const xoauth2 =  require ('xoauth2') ;
 // var url = 'mongodb://root:secure@ds161483.mlab.com:61483/asefall17';
@@ -176,11 +182,7 @@ var insertSearchDocument = function(db, data, callback) {
     });
 };
 
-var server = app.listen(8081,function () {
-    var host = server.address().address
-    var port = server.address().port
-    console.log("Example app listening at http://%s:%s", host, port)
-});
+
 
 
 app.get('/getHistoryData', function (req, res) {
@@ -230,4 +232,15 @@ app.get('/getDataEmail', function (req, res) {
             console.log('mail sent' );
         }
     })
+});
+
+//Requiired for managing angular routes without server routes
+app.all('*', function(req, res) {
+    res.sendFile(path.join(__dirname , 'public/LoginPage.html'));
+});
+
+var server = app.listen(8081,function () {
+    var host = server.address().address
+    var port = server.address().port
+    console.log("Example app listening at http://%s:%s", host, port)
 });
