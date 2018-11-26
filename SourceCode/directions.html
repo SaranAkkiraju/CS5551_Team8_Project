@@ -104,7 +104,10 @@
      addArray = [];
     angular.module('indexpage',[])
         .controller('indexctrl', function($scope, $http) {
-            $http.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query="+place+"+point+of+interest"+interest+"&language=en&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E").then(function (data) {
+            var search_keyword=place+"**"+interest;
+            $http.get('http://127.0.0.1:8081/getPlaces?searchkey='+search_keyword).then(function(data)
+            //$http.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query="+place+"+point+of+interest"+interest+"&language=en&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E").then(function (data)
+            {
                 if (data.data != null) {
                     var results = data.data.results.sort((a, b) => a.rating - b.rating);
                     results.reverse();

@@ -7,6 +7,7 @@ var bodyParser = require("body-parser");
 var express = require('express');
 var cors = require('cors');
 var app = express();
+var request=require("request");
 
 const nodemailer = require ('nodemailer');
 const xoauth2 =  require ('xoauth2') ;
@@ -78,6 +79,45 @@ app.get('/getData', function (req, res) {
         });
     });
 });
+
+//For retrieving list of places
+app.get('/getPlaces', function (req, res) {
+    var searchKeyword = req.query.searchkey;
+    var destination = searchKeyword.substring(0, searchKeyword.indexOf("**"));
+    var interest = searchKeyword.substring(searchKeyword.indexOf("**") + 2, searchKeyword.length);
+    request.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + destination + "+point+of+interest" + interest + "&language=en&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E", function (error, response, body) {
+        res.send(body);
+        //console.log(body);
+    });
+});
+
+//For retrieving image
+// app.get('/getImage', function (req, res) {
+//     var photoReference = req.query.searchkey;
+//     request.get("https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=" + photoReference + "&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E", function (error, response, body) {
+//         res.send(body);
+//         console.log(body);
+//     });
+// });
+
+//To get the description of the place
+app.get('/getDescription', function (req, res) {
+    var place_Name = req.query.searchkey;
+    request.get("https://kgsearch.googleapis.com/v1/entities:search?query="+place_Name+"&key=AIzaSyCZbMz2VUDfsNIawl7W9W64FpZp8gsoh10&limit=1&indent=True", function (error, response, body) {
+        res.send(body);
+        //console.log(body);
+    });
+});
+
+//To get the place details like reviews,weekly hours etc
+app.get('/getPlaceData', function (req, res) {
+    var placeId = req.query.searchkey;
+    request.get("https://maps.googleapis.com/maps/api/place/details/json?placeid="+placeId+"&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E", function (error, response, body) {
+        res.send(body);
+        //console.log(body);
+    });
+});
+
 var insertDocument = function(db, data, callback) {
     db.collection('aseproj').insertOne( data, function(err, result) {
         if(err)

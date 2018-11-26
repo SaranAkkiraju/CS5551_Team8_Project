@@ -76,7 +76,9 @@ angular.module('indexpage',[])
             //Here the code is written to get the places of particular destination with.without interest.
             //From the output of url request we take the placeid,name,address and rating
             //we will do the places sort on basis of rating
-            $http.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query="+$scope.searchDestination+"+point+of+interest"+interestValue+"&language=en&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E").then(function(data)
+            var search_keyword=$scope.searchDestination+"**"+interestValue;
+            $http.get('http://127.0.0.1:8081/getPlaces?searchkey='+search_keyword).then(function(data)
+            //$http.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query="+$scope.searchDestination+"+point+of+interest"+interestValue+"&language=en&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E").then(function(data)
             {
                 var photoReference='';
                 if(data.data!=null) {
@@ -103,6 +105,11 @@ angular.module('indexpage',[])
                             $scope.description = "Description :-";
 
                             $scope.placeids.push(results[j].rating + "###" + results[j].place_id);
+
+                            // var image=$http.get('http://127.0.0.1:8081/getImage?searchkey='+photoReference).then(function(imagedata)
+                            // {
+                            //     return imagedata;
+                            // });
 
                             var image = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=" + photoReference + "&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E";
                             $scope.placeRatings.push(results[j].rating);
@@ -135,12 +142,13 @@ angular.module('indexpage',[])
                         var place_Name=$scope.placeNames[z];
                         //console.log(place_Name);
 
-                        $http.get("https://kgsearch.googleapis.com/v1/entities:search?query="+place_Name+"&key=AIzaSyCZbMz2VUDfsNIawl7W9W64FpZp8gsoh10&limit=1&indent=True").success(function(descriptiondata)
+                        $http.get('http://127.0.0.1:8081/getDescription?searchkey='+place_Name).then(function(descriptiondata)
+                        //$http.get("https://kgsearch.googleapis.com/v1/entities:search?query="+place_Name+"&key=AIzaSyCZbMz2VUDfsNIawl7W9W64FpZp8gsoh10&limit=1&indent=True").success(function(descriptiondata)
                         {
                             try {
                                 console.log(descriptiondata);
 
-                                var description=descriptiondata.itemListElement[0].result.detailedDescription.articleBody;
+                                var description=descriptiondata.data.itemListElement[0].result.detailedDescription.articleBody;
                                 $scope.searchDescription.push(description);
                                 //console.log($scope.searchDescription);
                             }
@@ -148,12 +156,11 @@ angular.module('indexpage',[])
                             }
                         })
 
-                        $http.get("https://maps.googleapis.com/maps/api/place/details/json?placeid="+placeId+"&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E").then(function(placedata)
+                        $http.get('http://127.0.0.1:8081/getPlaceData?searchkey='+placeId).then(function(placedata)
+                        //$http.get("https://maps.googleapis.com/maps/api/place/details/json?placeid="+placeId+"&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E").then(function(placedata)
                         {
                             $scope.weekdayHours_week=[];
                             var documents=[];
-
-                            //     for(var i=0;i<1;i++) {
 
                             $scope.reviewHeader = "Reviews";
 
@@ -171,12 +178,10 @@ angular.module('indexpage',[])
 
                                 documents.push($scope.author_Name + '@@' + $scope.reviewtime + '##' + $scope.comment + '$$' + $scope.user_rating);
 
-                                // }
                                 $scope.reviews.push($scope.author_Name + '@@' + $scope.reviewtime + '##' + $scope.comment + '$$' + $scope.user_rating);
                             }
+
                             //console.log($scope.author_Name + '@@' + $scope.reviewtime + '##' + $scope.comment + '$$'+$scope.user_rating);
-
-
                             // for(var x=0;x<documents.length;x++) {
                             //     $scope.reviews.push((documents[x]).toString());
                             // }
