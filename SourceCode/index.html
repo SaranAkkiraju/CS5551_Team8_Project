@@ -311,7 +311,7 @@
 </div>
 <script>
     var url=window.location.href;
-    var userName=(url.substr(45)).replace("%20"," ");
+    var userName=(url.substring(url.indexOf("?")+1,url.length)).replace("%20"," ");
 
     console.log("It is !!!!!!!!!!!"+userName);
     if(userName.indexOf("place")<0) {
