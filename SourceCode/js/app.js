@@ -265,4 +265,16 @@ myapp.controller('getController',function($scope,$http,$window){
             )
         }
     };
+    $scope.getPassword = function(){
+        console.log($scope.uname);
+        var req = $http.get('http://127.0.0.1:8081/getpwd?keywords='+$scope.uname);
+        req.success(function (data, status, headers, config) {
+            console.log("Password has been sent successfully");
+        });
+        req.error(function (data, status, headers, config) {
+            // alert( "failure message: " + JSON.stringify({data: data}));
+            console.log("failure message: " + JSON.stringify({data: data}));
+        });
+    };
+
 });

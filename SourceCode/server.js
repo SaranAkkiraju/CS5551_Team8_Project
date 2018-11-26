@@ -59,6 +59,45 @@ app.post('/enroll', function (req, res) {
         });
     });
 });
+app.get('/getpwd', function (req, res){
+    var Keywords = req.query.keywords;
+    console.log(Keywords);
+    MongoClient.connect(url, function(err, db) {
+        if(err)
+        {
+            res.write("Failed, Error while cosnnecting to Database");
+            res.end();
+        }
+        if (err) throw err;
+        var dbo = db.db("apps");
+        var query = { username: Keywords };
+        dbo.collection("aseproj").find(query).toArray(function(err, result) {
+            if (err) throw err;
+            console.log(result[0].password);
+            var password = result[0].password;
+            var mailOptions = {
+                from: 'Pallavi <s.pallavidesai@gmail.com>',
+                to:Keywords,
+                subject: 'Your Password!!!',
+                text: 'Your password is :' + password
+            }
+            transporter.sendMail(mailOptions, function (err, res) {
+                if(err)
+                {
+                    console.log(err);
+
+                }
+                else
+                {
+                    console.log('Password is Sent');
+                }
+
+            })
+            db.close();
+            res.json(result);
+        });
+    });
+});
 app.get('/getData', function (req, res) {
     var searchKeywords = req.query.keywords;
     console.log("Param are "+searchKeywords);
