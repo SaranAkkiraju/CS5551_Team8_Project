@@ -12,6 +12,17 @@ const nodemailer = require ('nodemailer');
 const xoauth2 =  require ('xoauth2') ;
 // var url = 'mongodb://root:secure@ds161483.mlab.com:61483/asefall17';
 var url = 'mongodb://appstest:appstest123@ds137003.mlab.com:37003/apps';
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        type: 'OAuth2',
+        user: 's.pallavidesai@gmail.com',
+        clientId: '319573095737-2c98cnr7fhjnurbi5es3h907klpd0hpb.apps.googleusercontent.com',
+        clientSecret: 'KZ1frHthVQ76hInQK9tjU3Gw',
+        refreshToken: '1/ygt_aw7FxteuAfblxMSFrm0wPDRYZT-DNqnnfJLCLwM',
+        accessToken: 'ya29.GltFBjWUTyAiDH7USeXj3duqUCq_Opy9N0l2onl-JTmj-Mi1_dN79sb5TVaPSiEjHASA80xoqtJd4DJ79o4JZqPsyW6HiVPmW_DIdVO9ISQlqVqMWPGkfbVR3dZf',
+    },
+});
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,6 +34,24 @@ app.post('/enroll', function (req, res) {
             res.end();
         }
         var db= client.db();
+        var mailOptions = {
+            from: 'Pallavi <s.pallavidesai@gmail.com>',
+            to:req.body.username,
+            subject: 'Welcome User!!!',
+            text: 'You have been succesfully Registered'
+        }
+        transporter.sendMail(mailOptions, function (err, res) {
+            if(err)
+            {
+                console.log(err);
+
+            }
+            else
+            {
+                console.log('Email is Sent');
+            }
+
+        })
         insertDocument(db, req.body, function() {
             res.write("Successfully inserted");
             res.end();
@@ -145,17 +174,6 @@ app.get('/getDataEmail', function (req, res) {
     console.log("Param are "+searchKeywords);
     console.log("Param mes are "+searchKeywords1);
     console.log("Param mes are "+searchKeywords2);
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            type: 'OAuth2',
-            user: 's.pallavidesai@gmail.com',
-            clientId: '319573095737-2c98cnr7fhjnurbi5es3h907klpd0hpb.apps.googleusercontent.com',
-            clientSecret: 'KZ1frHthVQ76hInQK9tjU3Gw',
-            refreshToken: '1/ygt_aw7FxteuAfblxMSFrm0wPDRYZT-DNqnnfJLCLwM',
-            accessToken: 'ya29.GltFBjWUTyAiDH7USeXj3duqUCq_Opy9N0l2onl-JTmj-Mi1_dN79sb5TVaPSiEjHASA80xoqtJd4DJ79o4JZqPsyW6HiVPmW_DIdVO9ISQlqVqMWPGkfbVR3dZf',
-        },
-    });
     var mailoption = {
         from : searchKeywords,
         to : 'Pallavi <s.pallavidesai@gmail.com>',
