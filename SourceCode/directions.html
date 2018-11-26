@@ -59,18 +59,18 @@
     <div  class="find_form d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-md-between justify-content-start flex-wrap">
         <b style="color: white">From</b>
         <select id="start" class="dropdown_item_select find_input">
-            <option ng-repeat="x in elements" value="{{x}}">{{x}}</option>
+            <option ng-repeat="x in elements track by $index" value="{{x}}">{{x}}</option>
         </select>
         <br>
         <b style="color: white">Places:</b> <br>
         <i style="color: white">(Ctrl+Click for multiple selection)</i> <br>
         <select multiple id="waypoints" >
-            <option ng-repeat="x in elements" value="{{x}}">{{x}}</option>
+            <option ng-repeat="x in elements track by $index" value="{{x}}">{{x}}</option>
         </select>
         <br>
         <b style="color: white">To:</b>
         <select id="end" class="dropdown_item_select find_input" style="sie: white">
-            <option ng-repeat="x in elements" value="{{x}}">{{x}}</option>
+            <option ng-repeat="x in elements track by $index" value="{{x}}">{{x}}</option>
         </select>
         </br>
         </br>
@@ -85,8 +85,8 @@
 </script>
 <script>
     var url=window.location.href;
-    var place=(url.substr(50,url.indexOf("&&")-50)).replace("%20"," ");
-    var interest=(url.substr(url.indexOf("&&")+2)).replace("%20"," ");
+    var place=(url.substring(url.indexOf("?")+1,url.indexOf("&&"))).replace("%20"," ");
+    var interest=(url.substring(url.indexOf("&&")+2,url.length)).replace("%20"," ");
     if(interest=="select")
     {
         interest="";
