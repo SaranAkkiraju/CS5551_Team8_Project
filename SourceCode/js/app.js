@@ -23,12 +23,51 @@ myapp.controller('gethistory',function($scope,$http){
             // console.log("document is ok"+document);
             console.log("val "+JSON.stringify({d: d}));
 
+
+
             var document=[];
+            var fromDate;
+            var toDate;
+            var budget;
+            var interest;
             for (i=0;i<d.data.length;i++)
             {
-                // console.log("it is "+d.data[i].classID);
-                // console.log("it is "+d.data[i].major);
-                document.push(new Array(d.data[i].username+'!!!'+d.data[i].destination+'@@@'+d.data[i].from+'###'+d.data[i].to+'$$$'+d.data[i].budget+'%%%'+d.data[i].interest));
+                if(d.data[i].from)
+                {
+                    fromDate = d.data[i].from.substring(0,10);
+                }
+                else {
+                    fromDate = "";
+                }
+
+                if(d.data[i].to)
+                {
+                    console.log("It is ",typeof(d.data[i].to))
+                    toDate = d.data[i].to.substring(0,10);
+                }
+                else {
+                    toDate = "";
+                }
+
+                if(d.data[i].budget)
+                {
+                    budget = d.data[i].budget;
+                }
+                else {
+                    budget = "";
+                }
+
+                if(d.data[i].interest.toString() =="Select")
+                {
+                    interest = 'All';
+                }
+                else
+                {
+                    interest = d.data[i].interest;
+                }
+
+
+                document.push(new Array(d.data[i].username+'!!!'+d.data[i].destination+'@@@'+fromDate+'###'+toDate+'$$$'+budget+'%%%'+interest));
             }
 
             $scope.fullDocument =[];
@@ -245,6 +284,7 @@ myapp.controller('getController',function($scope,$http,$window){
                             if (d.data[i].password == $scope.password) {
                                 console.log("matched");
                                 localStorage.setItem("userid123",d.data[i].username);
+                                localStorage.setItem("firstname",d.data[i].firstname);
                                 $window.location.href = 'index.html?'+d.data[i].firstname;
                             }
                             else {

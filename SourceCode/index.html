@@ -94,9 +94,9 @@
 							<ul class="main_nav_list">
 								<li class="main_nav_item active"><a href="#">Home</a></li>
 								<li class="main_nav_item"><a href="profile.html">Profile</a></li>
-								<li class="main_nav_item"><a href="about.html">About us</a></li>
 								<li class="main_nav_item"><a href="contact.html">Contact</a></li>
 								<li class="main_nav_item"><a href="history.html">History</a></li>
+								<li class="main_nav_item"><a href="about.html">About us</a></li>
 								<li class="main_nav_item" onclick="signOut();"><a href="" >Sign Out</a></li>
 							</ul>
 						</nav>
@@ -315,7 +315,7 @@
 
     console.log("It is !!!!!!!!!!!"+userName);
     if(userName.indexOf("place")<0) {
-        document.getElementById("userDetails").textContent = "Welcome " + userName.toUpperCase() + "!!!! ";
+        document.getElementById("userDetails").textContent = "Welcome " + localStorage.getItem("firstname") + "!!!! ";
     }
     else {
         document.getElementById("userDetails").textContent = "";
