@@ -3,7 +3,7 @@ angular.module('indexpage',[])
 
         var url=window.location.href;
         var userName=(url.substring(url.indexOf("?")+1,url.length)).replace("%20"," ");
-
+        var search_keyword="";
         console.log("It is angular !!!!!!!!!!!"+userName);
         console.log("It is angular !!!!!!!!!!!"+userName.indexOf("place"));
         if(userName.indexOf("place")==0) {
@@ -35,35 +35,7 @@ angular.module('indexpage',[])
             //Getting the interest field value if the user doesn't select anything no interest is passed to the api request.
             var value=(document.getElementById("interest").value).toLowerCase();
 
-            var interestValue='';
-            switch(value.toString())
-            {
-                case "select":
-                    interestValue="";
-                    break;
-                case "museum":
-                    Setinterest("museum");
-                    break;
-                case "devotional":
-                    Setinterest("hindu_temple");
-                    break;
-                case "adventure":
-                    Setinterest("amusement_park");
-                    break;
-                case "scenic":
-                    Setinterest("park");
-                    break;
-                case "party":
-                    Setinterest("night_club");
-                    break;
 
-            }
-
-            function Setinterest(interest)
-            {
-                console.log(interest);
-                interestValue ="&type="+interest;
-            }
             var alpha= new RegExp('.*\\d.*');
             if ((alpha.test($scope.searchDestination)) && ($scope.searchDestination)) { // not email
                 $scope.finalErr = '              Numbers are not allowed in Destination';
@@ -76,7 +48,7 @@ angular.module('indexpage',[])
             //Here the code is written to get the places of particular destination with.without interest.
             //From the output of url request we take the placeid,name,address and rating
             //we will do the places sort on basis of rating
-            var search_keyword=$scope.searchDestination+"**"+interestValue;
+            search_keyword=$scope.searchDestination+"***"+(document.getElementById("interest").value).toLowerCase();
             $http.get('http://127.0.0.1:8081/getPlaces?searchkey='+search_keyword).then(function(data)
             //$http.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query="+$scope.searchDestination+"+point+of+interest"+interestValue+"&language=en&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E").then(function(data)
             {
@@ -85,12 +57,10 @@ angular.module('indexpage',[])
                     $scope.listheader = "Here are the places of the searched destination and priority";
                     // try {
                         var results = data.data.results.sort((a, b) => a.rating - b.rating);
-                        results.reverse();
-                        console.log(results.reverse());
 
                         var length = data.data.results.length;
 
-                        for (var j = 0; j < length; j++) {
+                        for (var j = length - 1; j >=0; j--) {
                             if(results[j].photos !=null) {
                                  photoReference = results[j].photos[0].photo_reference;
                             }
@@ -136,7 +106,7 @@ angular.module('indexpage',[])
             setTimeout(function ()
             {
                 try{
-                    for( var z=0;z<$scope.placeids.length;z++)
+                    for( var z=$scope.placeids.length -1;z>=0;z--)
                     {
                         var placeId=$scope.placeids[z].substring($scope.placeids[z].indexOf("###")+3,$scope.placeids[z].length);
                         var place_Name=$scope.placeNames[z];
