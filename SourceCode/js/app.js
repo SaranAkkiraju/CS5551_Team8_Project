@@ -67,7 +67,7 @@ myapp.controller('gethistory',function($scope,$http){
                 }
 
 
-                document.push(new Array(d.data[i].username+'!!!'+d.data[i].destination+'@@@'+fromDate+'###'+toDate+'$$$'+budget+'%%%'+interest));
+                document.push(new Array(i+'^^^'+d.data[i].username+'!!!'+d.data[i].destination+'@@@'+fromDate+'###'+toDate+'$$$'+budget+'%%%'+interest));
             }
 
             $scope.fullDocument =[];

@@ -115,6 +115,7 @@
                             <div class="contact_form_container">
                                 <table id="weather" class="tftable" border="3">
                                     <tr>
+                                        <th>S No</th>
                                         <th>Eamil ID</th>
                                         <th>Destination</th>
                                         <th>From</th>
@@ -123,7 +124,8 @@
                                         <th>Interest</th>
                                     </tr>
                                     <tr ng-repeat="x in fullDocument">
-                                        <td>{{x.substring(0,x.indexOf('!!!'))}}</td>
+                                        <td>{{x.substring(0,x.indexOf('^^^'))}}</td>
+                                        <td>{{x.substring(x.indexOf('^^^')+3,x.indexOf('!!!'))}}</td>
                                         <td>{{x.substring(x.indexOf('!!!')+3,x.indexOf('@@@'))}}</td>
                                         <td>{{x.substring(x.indexOf('@@@')+3,x.indexOf('###'))}}</td>
                                         <td>{{x.substring(x.indexOf('###')+3,x.indexOf('$$$'))}}</td>
