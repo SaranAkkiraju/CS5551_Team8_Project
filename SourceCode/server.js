@@ -122,9 +122,37 @@ app.get('/getData', function (req, res) {
 //For retrieving list of places
 app.get('/getPlaces', function (req, res) {
     var searchKeyword = req.query.searchkey;
-    var destination = searchKeyword.substring(0, searchKeyword.indexOf("**"));
-    var interest = searchKeyword.substring(searchKeyword.indexOf("**") + 2, searchKeyword.length);
-    request.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + destination + "+point+of+interest" + interest + "&language=en&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E", function (error, response, body) {
+    var destination = searchKeyword.substring(0, searchKeyword.indexOf("***"));
+    var interest = searchKeyword.substring(searchKeyword.indexOf("***") + 3, searchKeyword.length);
+    var interest_value="";
+    switch(interest.toString())
+    {
+        case "select":
+            interest="";
+            break;
+        case "museum":
+            Setinterest("museum");
+            break;
+        case "devotional":
+            Setinterest("hindu_temple");
+            break;
+        case "adventure":
+            Setinterest("amusement_park");
+            break;
+        case "scenic":
+            Setinterest("park");
+            break;
+        case "party":
+            Setinterest("night_club");
+            break;
+
+    }
+    function Setinterest(interest)
+    {
+        interest_value ="&type="+interest;
+    }
+    //console.log(interest_value)
+    request.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + destination + "+point+of+interest" + interest_value + "&language=en&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E", function (error, response, body) {
         res.send(body);
         //console.log(body);
     });

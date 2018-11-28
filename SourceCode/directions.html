@@ -87,14 +87,8 @@
     var url=window.location.href;
     var place=(url.substring(url.indexOf("?")+1,url.indexOf("&&"))).replace("%20"," ");
     var interest=(url.substring(url.indexOf("&&")+2,url.length)).replace("%20"," ");
-    if(interest=="select")
-    {
-        interest="";
-    }
-    else
-    {
-        interest="&type="+interest;
-    }
+    var search_keyword=place+"***"+interest;
+
     console.log("It is !!!!!!!!!!!"+place);
     console.log("It is !!!!!!!!!!!"+interest);
 
@@ -104,15 +98,13 @@
      addArray = [];
     angular.module('indexpage',[])
         .controller('indexctrl', function($scope, $http) {
-            var search_keyword=place+"**"+interest;
             $http.get('http://127.0.0.1:8081/getPlaces?searchkey='+search_keyword).then(function(data)
             //$http.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query="+place+"+point+of+interest"+interest+"&language=en&key=AIzaSyAk8FdCcWPekxegcpFkUAL5frrMc73F-4E").then(function (data)
             {
                 if (data.data != null) {
                     var results = data.data.results.sort((a, b) => a.rating - b.rating);
-                    results.reverse();
                     var length = data.data.results.length;
-                    for (var j = 0; j < length; j++) {
+                    for (var j = length - 1; j >=0; j--) {
                         addArray.push(results[j].formatted_address);
                     }
                     $scope.elements=addArray;
