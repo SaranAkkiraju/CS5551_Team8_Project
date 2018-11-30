@@ -19,7 +19,7 @@ angular.module('indexpage',[])
 
 
         $scope.viewDirections = function() {
-            $window.location.href = 'directions.html?'+$scope.searchDestination+'&&'+(document.getElementById("interest").value).toLowerCase()+'**'+$scope.budget;
+            $window.location.href = 'directions.html?'+$scope.searchDestination+'&&'+(document.getElementById("interest").value).toLowerCase()+'**'+localStorage.getItem("budget_count");
         };
 
 
@@ -89,6 +89,7 @@ angular.module('indexpage',[])
                                             }
                                         }
                                         new_length=c;
+                                        localStorage.setItem("budget_count",c);
                                         console.log("Budget taginde",$scope.budget);
                                         console.log("C value is",c);
                                         // $scope.budget= budgetVal;
@@ -228,7 +229,7 @@ angular.module('indexpage',[])
 
                         }
                     }, 5000);
-
+                    document.getElementById("btn2").style.visibility = "visible";
                     var dataParams = {
                         'username' : localStorage.getItem("userid123"),
                         'destination' : $scope.searchDestination,
