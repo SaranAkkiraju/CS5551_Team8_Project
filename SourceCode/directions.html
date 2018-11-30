@@ -85,12 +85,17 @@
 </script>
 <script>
     var url=window.location.href;
+    var new_length=0;
+    tsstCost =0;
+    c=0;
     var place=(url.substring(url.indexOf("?")+1,url.indexOf("&&"))).replace("%20"," ");
-    var interest=(url.substring(url.indexOf("&&")+2,url.length)).replace("%20"," ");
+    var interest=(url.substring(url.indexOf("&&")+2,url.indexOf("**"))).replace("%20"," ");
+    var budget=(url.substring(url.indexOf("**")+2,url.length)).replace("%20"," ");
     var search_keyword=place+"***"+interest;
 
     console.log("It is !!!!!!!!!!!"+place);
     console.log("It is !!!!!!!!!!!"+interest);
+    console.log("It is !!!!!!!!!!!"+budget);
 
     document.getElementById('back').addEventListener('click', function() {
         location.href='index.html?place'+place+"&&interest"+interest;
@@ -105,10 +110,38 @@
                     var results = data.data.results.sort((a, b) => a.rating - b.rating);
                     var length = data.data.results.length;
                     for (var j = length - 1; j >=0; j--) {
+                        console.log("It is oh ",results[j].name);
                         addArray.push(results[j].formatted_address);
+                        $http.get('http://127.0.0.1:8081/getCost?keywords='+results[j].name).success(function(d)
+                            {
+                                if (d.length >0)
+                                {
+                                    console.log(d[0].name);
+                                    budget=budget- d[0].cost;
+                                    if(budget>=0)
+                                    {
+                                        c=c+1;
+                                    }
+                                }
+                                new_length=c;
+                                console.log("Budget taginde",budget);
+                                console.log("C value is",c);
+                            },function(err)
+                            {
+                                console.log(err);
+                            }
+                        )
                     }
+                        console.log("new_length is --------"+new_length);
+                        // console.log("new_length is --------"+new_length);
+                    // for (var j = new_length - 1; j >=0; j--) {
+                    //     addArray.push(results[j].formatted_address);
+                    // }
+
+                    console.log("qwertyuiosdfghjksdfghjksdfghj");
                     $scope.elements=addArray;
                     console.log(addArray.length);
+                    console.log(addArray);
                     console.log(typeof(addArray));
                 }
             })

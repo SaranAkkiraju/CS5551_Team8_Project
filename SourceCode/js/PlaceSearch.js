@@ -19,7 +19,7 @@ angular.module('indexpage',[])
 
 
         $scope.viewDirections = function() {
-            $window.location.href = 'directions.html?'+$scope.searchDestination+'&&'+(document.getElementById("interest").value).toLowerCase();
+            $window.location.href = 'directions.html?'+$scope.searchDestination+'&&'+(document.getElementById("interest").value).toLowerCase()+'**'+$scope.budget;
         };
 
 
