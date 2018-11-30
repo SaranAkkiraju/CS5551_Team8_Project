@@ -31,7 +31,10 @@ angular.module('indexpage',[])
             $scope.placeids=[];
             $scope.placeNames=[];
             $scope.searchDescription=[];
-
+            var new_length=0;
+            tsstCost =0;
+            c=0;
+            var budgetVal= $scope.budget;
 
 
             //Getting the interest field value if the user doesn't select anything no interest is passed to the api request.
@@ -64,8 +67,48 @@ angular.module('indexpage',[])
                             var results = data.data.results.sort((a, b) => a.rating - b.rating);
 
                             var length = data.data.results.length;
+                            console.log("Budget is",$scope.budget);
+
 
                             for (var j = length - 1; j >=0; j--) {
+                                console.log("It is oh ",results[j].name);
+                                $http.get('http://127.0.0.1:8081/getCost?keywords='+results[j].name).success(function(d)
+                                    {
+                                        // console.log("It is oh1 ",results[j].name);
+
+                                        if (d.length >0)
+                                        {
+                                            console.log(d[0].name);
+                                            //console.log("val "+JSON.stringify({d: d}));
+                                            // console.log("getting cost");
+                                            // tsstCost = tsstCost + d[0].Cost;
+                                            budgetVal=budgetVal- d[0].cost;
+                                            if(budgetVal>=0)
+                                            {
+                                                c=c+1;
+                                            }
+                                        }
+                                        new_length=c;
+                                        console.log("Budget taginde",$scope.budget);
+                                        console.log("C value is",c);
+                                        // $scope.budget= budgetVal;
+
+
+
+                                        // $window.location.href = 'profile.html?'+'userName';
+                                    },function(err)
+                                    {
+                                        console.log(err);
+                                    }
+                                )
+                            }
+                            // console.log("final is",$scope.budget);
+                            // console.log("CXCXCXCXC final",tsstCost);
+
+                            setTimeout(function ()
+                            {
+                                console.log("new_length is --------"+new_length);
+                            for (var j = new_length - 1; j >=0; j--) {
                                 if(results[j].photos !=null) {
                                     photoReference = results[j].photos[0].photo_reference;
                                 }
@@ -90,9 +133,11 @@ angular.module('indexpage',[])
                                 $scope.placeRatings.push(results[j].rating);
 
                                 var appendedstring = results[j].rating + "###" + results[j].formatted_address + "***" + results[j].name + "^^^" + image;
+                                console.log("appendedstring......"+appendedstring);
                                 $scope.placesArray.push(appendedstring);
                                 $scope.placeNames.push(results[j].name);
                             }
+                            }, 3000);
 
                             //$scope.placesArray.sort();
                             // }
@@ -182,7 +227,7 @@ angular.module('indexpage',[])
                         catch (e) {
 
                         }
-                    }, 1000);
+                    }, 5000);
 
                     var dataParams = {
                         'username' : localStorage.getItem("userid123"),
