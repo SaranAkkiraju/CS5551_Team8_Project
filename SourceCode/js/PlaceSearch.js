@@ -23,7 +23,7 @@ angular.module('indexpage',[])
         };
 
         $scope.viewDirections1 = function() {
-            $window.location.href = 'results.html?'+$scope.searchDestination+'&&'+(document.getElementById("interest").value).toLowerCase()+'**'+localStorage.getItem("budget_count")+"^^"+"1";
+            $window.location.href = 'results.html?'+$scope.searchDestination+'&&'+(document.getElementById("interest").value).toLowerCase()+'**'+localStorage.getItem("budget_count")+"^^"+document.getElementById("no_days").value;
         };
 
 
