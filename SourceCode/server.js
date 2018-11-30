@@ -118,6 +118,26 @@ app.get('/getData', function (req, res) {
         });
     });
 });
+app.get('/getCost', function (req, res) {
+    var searchKeywords = req.query.keywords;
+    console.log("Param are "+searchKeywords);
+    MongoClient.connect(url, function(err, db) {
+        if(err)
+        {
+            res.write("Failed, Error while cosnnecting to Database");
+            res.end();
+        }
+        if (err) throw err;
+        var dbo = db.db("apps");
+        var query = { name: searchKeywords };
+        dbo.collection("tst").find(query).toArray(function(err, result) {
+            if (err) throw err;
+            // console.log(result[0].major);
+            db.close();
+            res.json(result);
+        });
+    });
+});
 
 //For retrieving list of places
 app.get('/getPlaces', function (req, res) {
