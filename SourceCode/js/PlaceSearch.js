@@ -22,6 +22,10 @@ angular.module('indexpage',[])
             $window.location.href = 'directions.html?'+$scope.searchDestination+'&&'+(document.getElementById("interest").value).toLowerCase()+'**'+localStorage.getItem("budget_count");
         };
 
+        $scope.viewDirections1 = function() {
+            $window.location.href = 'results.html?'+$scope.searchDestination+'&&'+(document.getElementById("interest").value).toLowerCase()+'**'+localStorage.getItem("budget_count")+"^^"+"1";
+        };
+
 
         $scope.getSearchResult = function() {
             $scope.placesArray =[];
@@ -230,6 +234,7 @@ angular.module('indexpage',[])
                         }
                     }, 5000);
                     document.getElementById("btn2").style.visibility = "visible";
+                    document.getElementById("btn3").style.visibility = "visible";
                     var dataParams = {
                         'username' : localStorage.getItem("userid123"),
                         'destination' : $scope.searchDestination,
