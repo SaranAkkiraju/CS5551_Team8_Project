@@ -160,7 +160,7 @@
             //}
         }
         console.log(addArray[0]);
-        console.log(addArray[19]);
+        // console.log(addArray[19]);
         directionsService.route({
             // origin: addArray[0],
             // destination: addArray[19],
@@ -187,6 +187,7 @@
                 var summaryPanel1 = document.getElementById('results');
                 summaryPanel1.innerHTML ="";
                 var div =addArray.length / no_of_days;
+                console.log(div);
                 var x;
                 for(x=0;x<no_of_days;x++)
                 {
@@ -195,25 +196,29 @@
 
                 var temp = 0;
                 for (x=0;x<no_of_days;x++) {
-                    var summaryPanel2 = document.getElementById(x);
-                    var days=0;
-                    days = x+1;
-                    summaryPanel2.innerHTML += '<p class="offers_text"><h3 style="color:antiquewhite;">Your Itinerary for Day ' + days + '</h3></p>';
-                    for (var i =0; i < div; i++) {
-
-                        summaryPanel2.innerHTML +=
-                            '                <div class="offers_item">\n' +
-                            '                    <div class="row">\n' +
-                            '                        <div class="col-lg-6">\n' +
-                            '                            <div class="offers_content">\n' +
-                            '                                <p class="offers_text" style="color:antiquewhite;">Address: ' + addArray[temp] + '</p>\n' +
-                            '                                <div class="offers_link" style="visibility: hidden"><a href="offers.html">read more</a></div>\n' +
-                            '                            </div>\n' +
-                            '                        </div>\n' +
-                            '                    </div>\n' +
-                            '                </div>\n';
-                        temp=temp+1;
-
+                    console.log("it is",addArray.length);
+                    console.log("x is",x);
+                    if(x<addArray.length) {
+                        var summaryPanel2 = document.getElementById(x);
+                        var days = 0;
+                        days = x + 1;
+                        summaryPanel2.innerHTML += '<p class="offers_text"><h3 style="color:antiquewhite;">Your Itinerary for Day ' + days + '</h3></p>';
+                        for (var i = 0; i < div; i++) {
+                            if (addArray[temp]) {
+                                summaryPanel2.innerHTML +=
+                                    '                <div class="offers_item">\n' +
+                                    '                    <div class="row">\n' +
+                                    '                        <div class="col-lg-6">\n' +
+                                    '                            <div class="offers_content">\n' +
+                                    '                                <p class="offers_text" style="color:antiquewhite;">Address: ' + addArray[temp] + '</p>\n' +
+                                    // '                                <div class="offers_link" style="visibility: hidden"><a href="offers.html">read more</a></div>\n' +
+                                    '                            </div>\n' +
+                                    '                        </div>\n' +
+                                    '                    </div>\n' +
+                                    '                </div>\n';
+                                temp = temp + 1;
+                            }
+                        }
                     }
                 }
 
