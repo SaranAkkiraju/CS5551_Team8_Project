@@ -234,11 +234,13 @@ myapp.controller('MongoRestController',function($scope,$http,$window){
                     }
                     else
                     {
+                        $scope.alert = window.alert;
                         var req = $http.post('http://127.0.0.1:8081/enroll', dataParams);
                         req.success(function (data, status, headers, config) {
                             $scope.message = data;
                             console.log("here " + data);
                             $scope.finalMsg = "Registration Successful";
+                            alert("You have been successfully Registered");
                             $window.location.href = 'LoginPage.html';
                         });
                         req.error(function (data, status, headers, config) {
@@ -307,9 +309,11 @@ myapp.controller('getController',function($scope,$http,$window){
     };
     $scope.getPassword = function(){
         console.log($scope.uname);
+        $scope.alert = window.alert;
         var req = $http.get('http://127.0.0.1:8081/getpwd?keywords='+$scope.uname);
         req.success(function (data, status, headers, config) {
             console.log("Password has been sent successfully");
+            alert("Password has been sent successfully to your email");
         });
         req.error(function (data, status, headers, config) {
             // alert( "failure message: " + JSON.stringify({data: data}));
