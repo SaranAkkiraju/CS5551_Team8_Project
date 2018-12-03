@@ -92,11 +92,9 @@
     var interest=(url.substring(url.indexOf("&&")+2,url.indexOf("**"))).replace("%20"," ");
     var budget_count=(url.substring(url.indexOf("**")+2,url.length)).replace("%20"," ");
     var search_keyword=place+"***"+interest;
-
     console.log("It is !!!!!!!!!!!"+place);
     console.log("It is !!!!!!!!!!!"+interest);
     //console.log("It is !!!!!!!!!!!"+budget);
-
     document.getElementById('back').addEventListener('click', function() {
         location.href='index.html?place'+place+"&&interest"+interest;
     });
