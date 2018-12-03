@@ -32,14 +32,8 @@ angular.module('indexpage',[])
             tsstCost =0;
             c=0;
             var budgetVal= $scope.budget;
-
-
             //Getting the interest field value if the user doesn't select anything no interest is passed to the api request.
             var value=(document.getElementById("interest").value).toLowerCase();
-
-
-
-
             //Here the code is written to get the places of particular destination with.without interest.
             //From the output of url request we take the placeid,name,address and rating
             //we will do the places sort on basis of rating
@@ -62,17 +56,13 @@ angular.module('indexpage',[])
                             $scope.listheader = "Here are the places of the searched destination and priority";
                             // try {
                             var results = data.data.results.sort((a, b) => a.rating - b.rating);
-
                             var length = data.data.results.length;
                             console.log("Budget is",$scope.budget);
-
-
                             for (var j = length - 1; j >=0; j--) {
                                 console.log("It is oh ",results[j].name);
                                 $http.get('http://127.0.0.1:8081/getCost?keywords='+results[j].name).success(function(d)
                                     {
                                         // console.log("It is oh1 ",results[j].name);
-
                                         if (d.length >0)
                                         {
                                             console.log(d[0].name);
@@ -87,7 +77,7 @@ angular.module('indexpage',[])
                                         }
                                         new_length=c;
                                         localStorage.setItem("budget_count",c);
-                                        console.log("Budget taginde",$scope.budget);
+                                        console.log("Budget taginde",budgetVal);
                                         console.log("C value is",c);
                                         // $scope.budget= budgetVal;
 
@@ -106,7 +96,9 @@ angular.module('indexpage',[])
                             setTimeout(function ()
                             {
                                 console.log("new_length is --------"+new_length);
-                            for (var j = new_length - 1; j >=0; j--) {
+                                let count=(results.length-1)-new_length;
+                            for (var j = results.length-1; j >=0; j--) {
+                            // for (var j = results.length-1; j >count; j--) {
                                 if(results[j].photos !=null) {
                                     photoReference = results[j].photos[0].photo_reference;
                                 }

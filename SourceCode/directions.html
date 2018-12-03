@@ -92,11 +92,9 @@
     var interest=(url.substring(url.indexOf("&&")+2,url.indexOf("**"))).replace("%20"," ");
     var budget_count=(url.substring(url.indexOf("**")+2,url.length)).replace("%20"," ");
     var search_keyword=place+"***"+interest;
-
     console.log("It is !!!!!!!!!!!"+place);
     console.log("It is !!!!!!!!!!!"+interest);
     //console.log("It is !!!!!!!!!!!"+budget);
-
     document.getElementById('back').addEventListener('click', function() {
         location.href='index.html?place'+place+"&&interest"+interest;
     });
@@ -111,7 +109,10 @@
                     var results = data.data.results.sort((a, b) => a.rating - b.rating);
                     var length = data.data.results.length;
                     var diff_count=length - budget_count;
-                    for (var j = length - 1; j >=diff_count; j--) {
+
+                    let count=(results.length-1)-new_length;
+                    for (var j = results.length-1; j >=0; j--) {
+                    // for (var j = results.length-1; j >count; j--) {
                         console.log("It is oh ",results[j].name);
                         addArray.push(results[j].formatted_address);
                     }
