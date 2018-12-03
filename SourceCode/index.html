@@ -149,19 +149,19 @@
 							<div class="find_item">
 								<div>Destination:</div>
 								<input type="text"  class="destination find_input" id="searchDestination" ng-model="searchDestination" placeholder="Enter your Destination">
-								<h5 style="color: red">{{finalErr}}</h5>
+								<h5 id="finalError" style="color: red; ">{{finalErr}}</h5>
 							</div>
-							<div class="find_item">
-								<div>Number of Days</div>
-								<input type="text" class="destination find_input" id="no_days">
+							<div style="top: -2.5%" class="find_item">
+								<div style="position:relative;left: -40%">Number of Days</div>
+								<input type="text" style="position:relative;left: -40%;" class="destination find_input" id="no_days">
 							</div>
-							<div class="find_item">
-								<div>Budget</div>
-								<input type="text" ng-model="budget" class="destination find_input"  placeholder="">
+							<div style="top: -2.5%" class="find_item">
+								<div style="position:relative;left: -80%">Budget</div>
+								<input type="text" ng-model="budget" style="position:relative;left: -80%" class="destination find_input"  placeholder="">
 							</div>
-							<div class="find_item" ng-model="interest">
-								<div>Interest</div>
-								<select name="interest" id="interest" class="dropdown_item_select find_input">
+							<div style="top: -2.5%" class="find_item" ng-model="interest">
+								<div style="position:relative;left: -180%;">Interest</div>
+								<select name="interest" id="interest" style="position:relative;left: -180%;width: 200px" class="dropdown_item_select find_input">
 									<option>Select</option>
 						 			<option>Museum</option>
 									<option>Adventure</option>
