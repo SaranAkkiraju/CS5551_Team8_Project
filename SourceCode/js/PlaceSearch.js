@@ -245,7 +245,7 @@ angular.module('indexpage',[])
             }
             else
             {
-                console.log("issue boss")
+                console.log("issue boss");
                 $scope.finalErr = '              Destination is Mandatory';
             }
 
