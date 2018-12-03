@@ -87,7 +87,7 @@ angular.module('indexpage',[])
                                         }
                                         new_length=c;
                                         localStorage.setItem("budget_count",c);
-                                        console.log("Budget taginde",$scope.budget);
+                                        console.log("Budget taginde",budgetVal);
                                         console.log("C value is",c);
                                         // $scope.budget= budgetVal;
 
@@ -106,7 +106,9 @@ angular.module('indexpage',[])
                             setTimeout(function ()
                             {
                                 console.log("new_length is --------"+new_length);
-                            for (var j = new_length - 1; j >=0; j--) {
+                                let count=(results.length-1)-new_length;
+                            for (var j = results.length-1; j >=0; j--) {
+                            // for (var j = results.length-1; j >count; j--) {
                                 if(results[j].photos !=null) {
                                     photoReference = results[j].photos[0].photo_reference;
                                 }
