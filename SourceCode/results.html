@@ -183,7 +183,7 @@
                 }
                 var summaryPanel1 = document.getElementById('results');
                 summaryPanel1.innerHTML ="";
-                var div =addArray.length / no_of_days;
+                var div =parseInt(addArray.length / no_of_days);
                 console.log(div);
                 // var x;
                 for(let x=0;x<no_of_days;x++)
@@ -202,6 +202,12 @@
                         days = x + 1;
                         summaryPanel2.innerHTML += '<p class="offers_text"><h3 style="color:antiquewhite;">Your Itinerary for Day ' + days + '</h3></p>';
                         let points = [];
+                        if(no_of_days<addArray.length && (x+1== no_of_days))
+                        {
+                            console.log("the value of index is"+ (x+1));
+                            div=(addArray.length-no_of_days)+1;
+                            console.log("the new div is"+ ((addArray.length-no_of_days)+1));
+                        }
                         for (var i = 0; i < div; i++) {
                             if (addArray[temp]) {
                                 points.push(addArray[temp])

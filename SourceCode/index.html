@@ -312,7 +312,17 @@
 
     console.log("It is !!!!!!!!!!!"+userName);
     if(userName.indexOf("place")<0) {
-        document.getElementById("userDetails").textContent = "Welcome " + localStorage.getItem("firstname") + "!!!! ";
+        var uname="";
+        if(localStorage.getItem("firstname") !=null)
+        {
+             uname=localStorage.getItem("firstname");
+        }
+        else
+        {
+            var url=window.location.href;
+            uname=(url.substring(url.indexOf("?")+1,url.length)).replace("%20"," ");
+        }
+        document.getElementById("userDetails").textContent = "Welcome " + uname + "!!!! ";
     }
     else {
         document.getElementById("userDetails").textContent = "";
