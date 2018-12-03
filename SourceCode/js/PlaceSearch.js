@@ -8,15 +8,8 @@ angular.module('indexpage',[])
         console.log("It is angular !!!!!!!!!!!"+userName.indexOf("place"));
         if(userName.indexOf("place")==0) {
             console.log("angular i am here");
-            $scope.searchDestination=(url.substr(50,url.indexOf("&&")-50)).replace("%20"," ");
-            // $scope.searchDestination=(url.substr(50,url.indexOf("&&")-50)).replace("%20"," ");
+            $scope.searchDestination=(url.substring(url.indexOf("?")+6,url.indexOf("&&"))).replace("%20"," ");
         }
-        // else {
-        //     document.getElementById("userDetails").textContent = "";
-        //     console.log("i am here");
-        //     document.getElementById("searchDestination").value ="aaaaaaaaa" ;
-        // }
-
 
         $scope.viewDirections = function() {
             $window.location.href = 'directions.html?'+$scope.searchDestination+'&&'+(document.getElementById("interest").value).toLowerCase()+'**'+localStorage.getItem("budget_count");
