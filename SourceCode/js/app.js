@@ -22,14 +22,12 @@ myapp.controller('gethistory',function($scope,$http){
         {
             // console.log("document is ok"+document);
             console.log("val "+JSON.stringify({d: d}));
-
-
-
             var document=[];
             var fromDate;
             var toDate;
             var budget;
             var interest;
+            var no_of_days1;
             for (i=0;i<d.data.length;i++)
             {
                 if(d.data[i].from)
@@ -56,6 +54,13 @@ myapp.controller('gethistory',function($scope,$http){
                 else {
                     budget = "";
                 }
+                if(d.data[i].numDays)
+                {
+                    no_of_days1 = d.data[i].numDays;
+                }
+                else {
+                    no_of_days1 = "";
+                }
 
                 if(d.data[i].interest.toString() =="Select")
                 {
@@ -67,7 +72,8 @@ myapp.controller('gethistory',function($scope,$http){
                 }
 
 
-                document.push(new Array(i+'^^^'+d.data[i].username+'!!!'+d.data[i].destination+'@@@'+fromDate+'###'+toDate+'$$$'+budget+'%%%'+interest));
+
+                document.push(new Array(i+1+'^^^'+d.data[i].username+'!!!'+d.data[i].destination+'@@@'+no_of_days1+'###'+budget+'%%%'+interest));
             }
 
             $scope.fullDocument =[];

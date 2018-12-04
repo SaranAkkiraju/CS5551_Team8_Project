@@ -282,7 +282,8 @@ app.get('/getHistoryData', function (req, res) {
         if (err) throw err;
         var dbo = db.db("apps");
         var query = { username: searchKeywords };
-        dbo.collection("aseprojsearch").find(query).toArray(function(err, result) {
+        var mysort = { time: -1 };
+        dbo.collection("aseprojsearch").find(query).sort(mysort).toArray(function(err, result) {
             if (err) throw err;
             // console.log(result[0].major);
             db.close();

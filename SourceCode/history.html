@@ -116,8 +116,7 @@
                                         <th>S No</th>
                                         <th>Email ID</th>
                                         <th>Destination</th>
-                                        <th>From</th>
-                                        <th>To</th>
+                                        <th>No of Days</th>
                                         <th>Budget</th>
                                         <th>Interest</th>
                                     </tr>
@@ -126,8 +125,7 @@
                                         <td>{{x.substring(x.indexOf('^^^')+3,x.indexOf('!!!'))}}</td>
                                         <td>{{x.substring(x.indexOf('!!!')+3,x.indexOf('@@@'))}}</td>
                                         <td>{{x.substring(x.indexOf('@@@')+3,x.indexOf('###'))}}</td>
-                                        <td>{{x.substring(x.indexOf('###')+3,x.indexOf('$$$'))}}</td>
-                                        <td>{{x.substring(x.indexOf('$$$')+3,x.indexOf('%%%'))}}</td>
+                                        <td>{{x.substring(x.indexOf('###')+3,x.indexOf('%%%'))}}</td>
                                         <td>{{x.substring(x.indexOf('%%%')+3,x.length)}}</td>
                                         <!--<td>{{x.substring(x.indexOf('-',3)+1,x.indexOf('http')-1)}}</td>-->
                                     </tr>
