@@ -82,7 +82,7 @@
     <div class="container">
         <div class="row">
             <div class="col text-center">
-                <h1 class="section_title" style="color:lemonchiffon;">Itinerary for your Trip! Have fun :)</h1>
+                <h1 class="section_title" style="font-family: Candara;color:whitesmoke;">Itinerary for your Trip! Have fun :)</h1>
                 <br>
                 <input type="submit" class="button" style="color: #fe435b" id="submit" value="Get My Plan" onclick="hideFunction()">
                 &nbsp &nbsp<input type="submit" class="button" style="color: #fe435b;"  id="back" value="Back">
@@ -188,7 +188,7 @@
                 // var x;
                 for(let x=0;x<no_of_days;x++)
                 {
-                    summaryPanel1.innerHTML += '<div  id ='+x+'  style="text-align:center; background-image: url(images/fact_background.jpg);"> </div>';
+                    summaryPanel1.innerHTML += '<br><div  id ='+x+'  style="text-align:center; background-image: url(images/fact_background.jpg);width:60%;position:relative;left:20%"> </div>';
                 }
                 var temp = 0;
                 var wayptsarr=[];
@@ -200,7 +200,7 @@
                         var summaryPanel3 = document.getElementById(x);
                         var days = 0;
                         days = x + 1;
-                        summaryPanel2.innerHTML += '<p class="offers_text"><h3 style="color:antiquewhite;">Your Itinerary for Day ' + days + '</h3></p>';
+                        summaryPanel2.innerHTML += '<br><p class="offers_text"><h3 style="color:antiquewhite;font-family: Candara">Your Itinerary for Day ' + days + '</h3></p>';
                         let points = [];
                         if(no_of_days<addArray.length && (x+1== no_of_days))
                         {
@@ -216,7 +216,7 @@
                                     '                    <div class="row" style="text-align: center;">\n' +
                                     '                        <div class="col-lg-6" style="text-align: center;">\n' +
                                     '                            <div class="offers_content" style="text-align: center;">\n' +
-                                    '                                <p class="offers_text" style="position: relative;left: 50% ;color:antiquewhite;">Address: ' + addArray[temp] + '</p>\n' +
+                                    '                                <p class="offers_text" style="position: relative;left: 50% ;color:antiquewhite;font-family: Candara">Address: ' + addArray[temp] + '</p>\n' +
                                     '                            </div>\n' +
                                     '                        </div>\n' +
                                     '                    </div>\n' +
