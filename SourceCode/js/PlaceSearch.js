@@ -220,13 +220,22 @@ angular.module('indexpage',[])
                     }, 5000);
                     document.getElementById("btn2").style.visibility = "visible";
                     document.getElementById("btn3").style.visibility = "visible";
+
+                    var currentdate = new Date();
+                    var myDate = new Date(currentdate.getMonth()+1 + "/"
+                        + (currentdate.getDate())  + "/"
+                        + currentdate.getFullYear() + " @ "
+                        + currentdate.getHours() + ":"
+                        + currentdate.getMinutes() + ":"
+                        + currentdate.getSeconds());
+
                     var dataParams = {
                         'username' : localStorage.getItem("userid123"),
                         'destination' : $scope.searchDestination,
-                        'from' : $scope.from,
-                        'to' : $scope.to,
+                        'numDays' : $scope.no_days,
                         'budget': $scope.budget,
-                        'interest' : document.getElementById("interest").value
+                        'interest' : document.getElementById("interest").value,
+                        'time':myDate
                     };
                     var config = {
                         headers : {
